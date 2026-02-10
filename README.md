@@ -1,4 +1,4 @@
-<h1>Engenharia-de-Requisitos-e-Testes</h1>
+<h1>Engenharia de Requisitos e Testes</h1>
 <br>
 <br>
 <strong>Elementos do grupo:</strong> <br>
