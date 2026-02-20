@@ -9,8 +9,7 @@
 <p>
 EcoDoar é uma plataforma digital (web e mobile) orientada para a economia circular, destinada à comunidade do concelho de Elvas, que facilita a doação e reutilização de bens não perecíveis através de um sistema estruturado de registo, validação institucional e correspondência automática entre oferta e necessidade, promovendo eficiência logística, rastreabilidade e impacto social.
 
-Link para acessar e ver mais detalhado o Projeto:
-https://ulht-jcb.gitbook.io/ecodoar/
+<a href="https://ulht-jcb.gitbook.io/ecodoar/">Clique para acessar e ver mais detalhado o Projeto</a>
 </p>
 <br>
 
