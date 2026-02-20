@@ -1,7 +1,7 @@
 <h1>Projeto escolhido: EcoDoar</h1>
-
+<br>
 <h2>Um breve resumo do projeto EcoDoar</h2>
-
+<br>
 <p>
 O EcoDoar é uma plataforma digital (web e mobile) orientada para a economia circular, que visa facilitar a doação e reutilização de bens essenciais não perecíveis (roupa, brinquedos, material escolar, mobiliário e outros), com foco na comunidade do concelho de Elvas.
 
@@ -32,8 +32,11 @@ O MVP focar-se-á nos fluxos essenciais: registo e autenticação, validação d
 Link para acessar e ver mais detalhado o Projeto:
 https://ulht-jcb.gitbook.io/ecodoar/
 </p>
-
-
-
-<h2></h2>
-
+<br>
+<h2>Objetivos</h2>
+<br>
+<ul>
+  <li>Ciar uma aplicação móvel para o projeto EcoDoar</li>
+  <li>...</li>
+  <li>...</li>
+</ul>
