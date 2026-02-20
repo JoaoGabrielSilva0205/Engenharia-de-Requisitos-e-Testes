@@ -4,7 +4,6 @@
 <p>
   Para o estudo da cadeira de Engenharia de Requisitos e Testes iremos utilizar o projeto EcoDoar.
 </p>
-<br>
 <h2>Projeto no Trello</h2>
 <a href="https://trello.com/invite/b/698af9b62d78be81e09be2bf/ATTI30844e510cf7421d1a9442488e11ef04F8B63AAE/exemplo" target="_blank">Link para acessar o projeto do Trello</a>
 <br>
