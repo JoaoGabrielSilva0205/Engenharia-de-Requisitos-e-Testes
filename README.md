@@ -1,4 +1,4 @@
-<h1>Engenharia de Requisitos e Testes</h1>
+<h1>Engenharia de Requisitos e Testes - Grupo-OsCria</h1>
 <br>
 <h2>Tema de projeto usado: EcoDoar</h2>
 <p>
