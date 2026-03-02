@@ -1,4 +1,4 @@
-# Requirements v1 — Lab 3 
+# Requirements v1 — Lab 3
 
 ## Lista de requisitos com IDs estáveis
 
@@ -7,7 +7,7 @@
 **Tipo:** FR  
 **Stakeholder:** Equipa AMS  
 **Prioridade:** Alta  
-**Área:** Sessão de Admissão e Validação  
+**Área AMS:** Sessão de Admissão e Validação  
 
 ---
 
@@ -16,7 +16,7 @@
 **Tipo:** FR  
 **Stakeholder:** Equipa AMS  
 **Prioridade:** Alta  
-**Área:** Evidências e Rastreabilidade  
+**Área AMS:** Evidências e Rastreabilidade  
 
 ---
 
@@ -25,7 +25,7 @@
 **Tipo:** FR  
 **Stakeholder:** Equipa AMS  
 **Prioridade:** Alta  
-**Área:** Informações Críticas Ausentes  
+**Área AMS:** Sessão de Admissão e Validação  
 
 ---
 
@@ -34,7 +34,7 @@
 **Tipo:** NFR  
 **Stakeholder:** Administrador do sistema  
 **Prioridade:** Alta  
-**Área:** Gestão de Utilizadores e Permissões  
+**Área AMS:** Gestão de Utilizadores e Permissões  
 
 ---
 
@@ -43,7 +43,7 @@
 **Tipo:** NFR  
 **Stakeholder:** Auditoria / Segurança  
 **Prioridade:** Alta  
-**Área:** Auditoria e Registo  
+**Área AMS:** Evidências e Rastreabilidade  
 
 ---
 
@@ -52,7 +52,7 @@
 **Tipo:** FR  
 **Stakeholder:** Gestão / Administração  
 **Prioridade:** Média  
-**Área:** Exportação e Relatórios  
+**Área AMS:** Exportação e Relatórios  
 
 ---
 
@@ -61,7 +61,7 @@
 **Tipo:** NFR (mensurável)  
 **Stakeholder:** Utilizadores mobile  
 **Prioridade:** Alta  
-**Área:** Desempenho Mobile  
+**Área AMS:** Desempenho e Operação Mobile  
 
 ---
 
@@ -70,7 +70,7 @@
 **Tipo:** NFR (mensurável)  
 **Stakeholder:** Utilizadores / Compliance GDPR  
 **Prioridade:** Alta  
-**Área:** Privacidade e Conformidade  
+**Área AMS:** Privacidade e Conformidade  
 
 ---
 
@@ -79,7 +79,7 @@
 **Tipo:** NFR (mensurável)  
 **Stakeholder:** Operações / Suporte AMS  
 **Prioridade:** Alta  
-**Área:** Disponibilidade do Sistema  
+**Área AMS:** Privacidade e Conformidade  
 
 ---
 
@@ -88,7 +88,7 @@
 **Tipo:** NFR  
 **Stakeholder:** Auditoria / Compliance  
 **Prioridade:** Média  
-**Área:** Auditoria e Registo  
+**Área AMS:** Evidências e Rastreabilidade  
 
 ---
 
@@ -97,7 +97,7 @@
 **Tipo:** NFR  
 **Stakeholder:** Segurança da Informação  
 **Prioridade:** Alta  
-**Área:** Gestão de Utilizadores e Permissões  
+**Área AMS:** Gestão de Utilizadores e Permissões  
 
 ---
 
@@ -106,7 +106,7 @@
 **Tipo:** NFR  
 **Stakeholder:** Utilizadores mobile  
 **Prioridade:** Média  
-**Área:** Desempenho e Operação Mobile  
+**Área AMS:** Desempenho e Operação Mobile  
 
 ---
 
@@ -213,3 +213,18 @@ Medição: verificação periódica.
 - Conformidade com GDPR.
 - Controlo de acesso baseado em perfis.
 - Sincronização automática offline.
+
+---
+
+## Mapeamento Estrutural (AMS → Implementação)
+
+Este documento organiza requisitos segundo áreas AMS.  
+A implementação operacional (Trello) está estruturada por módulos do sistema.
+
+Correspondência:
+
+- Gestão de Utilizadores (Trello) → Gestão de Utilizadores e Permissões (AMS)
+- Auditoria e Segurança (Trello) → Evidências e Rastreabilidade + Privacidade e Conformidade (AMS)
+- Mobile e Desempenho (Trello) → Desempenho e Operação Mobile (AMS)
+
+Este mapeamento garante rastreabilidade entre a estrutura de transição AMS e a estrutura funcional do sistema.
