@@ -1,4 +1,4 @@
-# Requirements Map — Lab 3 
+# Requirements Map — Lab 3
 
 ---
 
@@ -6,6 +6,7 @@
 
 REQ-001 — Sessão de admissão validada  
 REQ-003 — Identificação de informação crítica em falta  
+REQ-013 — Registo formal de validação institucional de beneficiários  
 
 ---
 
@@ -14,6 +15,9 @@ REQ-003 — Identificação de informação crítica em falta
 REQ-002 — Registo de evidências rastreáveis  
 REQ-005 — Auditoria de ações  
 REQ-010 — Retenção de logs  
+REQ-014 — Histórico de validações  
+REQ-016 — Registo de alterações de estado  
+REQ-018 — Integridade dos registos de auditoria  
 
 ---
 
@@ -21,12 +25,14 @@ REQ-010 — Retenção de logs
 
 REQ-004 — Controlo de acessos RBAC  
 REQ-011 — Proteção de dados sensíveis  
+REQ-015 — Atualização controlada de estado de beneficiários  
 
 ---
 
 ## EPIC-4 — Exportação e Relatórios
 
 REQ-006 — Exportação de relatórios  
+REQ-017 — Consulta estruturada de logs  
 
 ---
 
@@ -34,6 +40,7 @@ REQ-006 — Exportação de relatórios
 
 REQ-007 — Desempenho mobile  
 REQ-012 — Sincronização offline  
+REQ-019 — Tempo máximo de processamento de operações críticas  
 
 ---
 
@@ -41,6 +48,7 @@ REQ-012 — Sincronização offline
 
 REQ-008 — Eliminação de dados pessoais  
 REQ-009 — Disponibilidade do sistema  
+REQ-020 — Proteção de dados pessoais sensíveis  
 
 ---
 
@@ -55,6 +63,11 @@ REQ-004 — RBAC
 REQ-005 — Auditoria de ações  
 REQ-007 — Performance mobile  
 REQ-008 — Eliminação GDPR  
+REQ-014 — Histórico de validações  
+REQ-016 — Registo de alterações de estado  
+REQ-018 — Integridade de auditoria  
+REQ-019 — Performance operacional  
+REQ-020 — Proteção de dados sensíveis  
 
 ### Requisitos não funcionais influenciados pela variante
 
@@ -62,6 +75,12 @@ REQ-004
 REQ-005  
 REQ-007  
 REQ-008  
+REQ-010  
+REQ-014  
+REQ-016  
+REQ-018  
+REQ-019  
+REQ-020  
 
 ---
 
