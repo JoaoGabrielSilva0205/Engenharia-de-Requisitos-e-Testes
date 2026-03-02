@@ -1,7 +1,4 @@
-# Requirements Map — Lab 3 (AMS)
-
-Este mapa organiza os requisitos (REQ-###) por área funcional AMS,
-garantindo rastreabilidade estrutural entre definição formal e implementação.
+# Requirements Map — Lab 3 
 
 ---
 
