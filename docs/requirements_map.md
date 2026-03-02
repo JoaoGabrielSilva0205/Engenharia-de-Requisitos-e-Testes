@@ -1,101 +1,95 @@
-# Requirements Map — Lab 3
+# Requirements Map — Lab 3 (EcoDoar)
+
+Este mapa organiza os requisitos (REQ-###) por área funcional do sistema EcoDoar,
+garantindo rastreabilidade entre especificação formal (GitHub) e planeamento
+operacional (Trello).
 
 ---
 
-## EPIC-1 — Sessão de Admissão e Validação
+## EPIC-1 — Gestão de Utilizadores
 
-REQ-001 — Sessão de admissão validada  
-REQ-003 — Identificação de informação crítica em falta  
-REQ-013 — Registo formal de validação institucional de beneficiários  
-
----
-
-## EPIC-2 — Evidências e Rastreabilidade
-
-REQ-002 — Registo de evidências rastreáveis  
-REQ-005 — Auditoria de ações  
-REQ-010 — Retenção de logs  
-REQ-014 — Histórico de validações  
-REQ-016 — Registo de alterações de estado  
-REQ-018 — Integridade dos registos de auditoria  
+REQ-001 — Registo de utilizador  
+REQ-002 — Validação de email no registo  
+REQ-003 — Gestão de dados do perfil  
+REQ-009 — Edição de perfil  
+REQ-010 — Eliminação de conta e dados pessoais (GDPR)
 
 ---
 
-## EPIC-3 — Gestão de Utilizadores e Permissões
+## EPIC-2 — Autenticação e Segurança
 
-REQ-004 — Controlo de acessos RBAC  
-REQ-011 — Proteção de dados sensíveis  
-REQ-015 — Atualização controlada de estado de beneficiários  
-
----
-
-## EPIC-4 — Exportação e Relatórios
-
-REQ-006 — Exportação de relatórios  
-REQ-017 — Consulta estruturada de logs  
+REQ-004 — Autenticação com email e password  
+REQ-005 — Registo de tentativas falhadas de login  
+REQ-006 — Bloqueio de conta após falhas consecutivas  
+REQ-007 — Envio de email de recuperação de password  
+REQ-008 — Redefinição segura de password  
 
 ---
 
-## EPIC-5 — Desempenho e Operação Mobile
+## EPIC-3 — Gestão de Doações
 
-REQ-007 — Desempenho mobile  
-REQ-012 — Sincronização offline  
-REQ-019 — Tempo máximo de processamento de operações críticas  
+REQ-011 — Criação de anúncio de item  
+REQ-012 — Edição de item publicado  
+REQ-013 — Alteração de estado de item  
 
 ---
 
-## EPIC-6 — Privacidade e Conformidade
+## EPIC-4 — Correspondência e Notificações
 
-REQ-008 — Eliminação de dados pessoais  
-REQ-009 — Disponibilidade do sistema  
-REQ-020 — Proteção de dados pessoais sensíveis  
+REQ-014 — Correspondência automática entre pedidos e itens  
+REQ-015 — Notificações de correspondência  
+
+---
+
+## EPIC-5 — Validação de Beneficiários
+
+REQ-016 — Validação institucional de beneficiários  
+REQ-017 — Histórico de validações  
+
+---
+
+## EPIC-6 — Auditoria e Registo
+
+REQ-018 — Registo de ações críticas  
+REQ-019 — Retenção de logs  
+
+---
+
+## EPIC-7 — Desempenho Mobile
+
+REQ-020 — Performance da interface mobile  
 
 ---
 
 ## Resumo da Cobertura de Variante
 
-**Número da variante:** Variante Mobile + Auditoria + GDPR
+Variante considerada: Mobile + Auditoria + GDPR
 
 ### Requisitos influenciados pela variante
 
-REQ-002 — Evidências rastreáveis  
-REQ-004 — RBAC  
-REQ-005 — Auditoria de ações  
-REQ-007 — Performance mobile  
-REQ-008 — Eliminação GDPR  
-REQ-014 — Histórico de validações  
-REQ-016 — Registo de alterações de estado  
-REQ-018 — Integridade de auditoria  
-REQ-019 — Performance operacional  
-REQ-020 — Proteção de dados sensíveis  
-
-### Requisitos não funcionais influenciados pela variante
-
-REQ-004  
-REQ-005  
-REQ-007  
-REQ-008  
-REQ-010  
-REQ-014  
-REQ-016  
-REQ-018  
-REQ-019  
-REQ-020  
+REQ-005 — Registo de tentativas de login  
+REQ-006 — Bloqueio de conta  
+REQ-008 — Redefinição segura de password  
+REQ-010 — Eliminação de dados pessoais (GDPR)  
+REQ-017 — Histórico de validações  
+REQ-018 — Auditoria de ações  
+REQ-019 — Retenção de logs  
+REQ-020 — Performance mobile  
 
 ---
 
-## Mapeamento Estrutural AMS → Organização Trello
+## Rastreabilidade com Trello
 
-A estrutura AMS utilizada neste documento representa a organização
-orientada à transição e descoberta (Admissão e Discovery).
+Cada REQ-### corresponde diretamente a um item de backlog no Trello.
 
-A implementação operacional no Trello está organizada por módulos funcionais:
+Estrutura de correspondência:
 
-- Gestão de Utilizadores → corresponde a EPIC-3 (Gestão de Utilizadores e Permissões)
-- Auditoria e Segurança → corresponde a EPIC-2 + EPIC-6
-- Mobile e Desempenho → corresponde a EPIC-5
-- Exportação e Relatórios → corresponde a EPIC-4
-- Validação de Beneficiários → relacionado com EPIC-1
+Epic (Trello) → Epic (Requirements Map)  
+Feature (Trello) → Agrupamento funcional  
+Backlog item (Trello) → REQ-###  
 
-Este mapeamento garante rastreabilidade entre modelo conceptual AMS
-e organização prática do desenvolvimento.
+Isto garante rastreabilidade completa entre:
+
+- Planeamento do desenvolvimento  
+- Especificação formal  
+- Implementação futura
