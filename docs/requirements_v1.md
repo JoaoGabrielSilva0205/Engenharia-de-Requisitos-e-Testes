@@ -1,107 +1,129 @@
-<h1>Necessidades</h1>
-<br>
+# Requirements v1 — Lab 3 (AMS)
 
-<h2>Necessidade #1</h2>
-<p>Epic</p>
-<p>Precisamos que as pessoas possam criar conta e entrar no aplicativo pelo telemóvel.</p>
-<br>
+## Lista de requisitos com IDs estáveis
 
-<h2>Necessidade #2</h2>
-<p>Feature</p>
-<p>Precisamos distinguir tipos de utilizadores (doador, beneficiário, Cruz Vermelha, escola e administrador).</p>
-<br>
+REQ-001 — O sistema deve permitir o registo e validação de sessões de admissão de novos serviços ou componentes.
 
-<h2>Necessidade #3</h2>
-<p>Epic</p>
-<p>Precisamos validar oficialmente quem pode ser beneficiário antes de receber doações.</p>
-<br>
+REQ-002 — O sistema deve registar a origem, data e responsável por cada evidência recolhida durante a admissão.
 
-<h2>Necessidade #4</h2>
-<p>Feature</p>
-<p>Precisamos que a Cruz Vermelha consiga aprovar ou rejeitar beneficiários no aplicativo.</p>
-<br>
+REQ-003 — O sistema deve identificar e registar automaticamente informações críticas em falta durante a admissão.
 
-<h2>Necessidade #5</h2>
-<p>Epic</p>
-<p>Precisamos que doadores possam publicar itens que querem doar com fotos e descrição.</p>
-<br>
+REQ-004 — O sistema deve implementar controlo de acessos baseado em papéis (RBAC).
 
-<h2>Necessidade #6</h2>
-<p>Feature</p>
-<p>Precisamos permitir tirar fotos do item diretamente pela câmara do telemóvel.</p>
-<br>
+REQ-005 — O sistema deve registar todas as ações relevantes em logs de auditoria.
 
-<h2>Necessidade #6</h2>
-<p>Feature</p>
-<p>Precisamos permitir tirar fotos do item diretamente pela câmara do telemóvel.</p>
-<br>
+REQ-006 — O sistema deve permitir exportação de relatórios de admissão e estado do serviço.
 
-<h2>Necessidade #7</h2>
-<p>Epic</p>
-<p>Precisamos que beneficiários possam pedir itens que necessitam.</p>
-<br>
+REQ-007 — O sistema deve carregar a interface mobile em até 3 segundos sob condições normais de rede. (NFR — mensurável)
 
-<h2>Necessidade #8</h2>
-<p>Epic</p>
-<p>Precisamos mostrar automaticamente quando um item disponível corresponde a um pedido existente.</p>
-<br>
+REQ-008 — O sistema deve permitir eliminação ou anonimização de dados pessoais em até 30 dias após solicitação. (NFR — mensurável)
 
-<h2>Necessidade #9</h2>
-<p>Feature</p>
-<p>Precisamos notificar os utilizadores no telemóvel quando existe um match entre doação e necessidade.</p>
-<br>
+REQ-009 — O sistema deve garantir disponibilidade mensal mínima de 99%. (NFR — mensurável)
 
-<h2>Necessidade #10</h2>
-<p>Epic</p>
-<p>Precisamos acompanhar o estado do item (disponível, reservado, entregue).</p>
-<br>
+REQ-010 — O sistema deve armazenar logs de auditoria por pelo menos 12 meses. (NFR)
 
-<h2>Necessidade #11</h2>
-<p>Feature</p>
-<p>Precisamos mostrar ao utilizador o histórico das suas doações ou pedidos.</p>
-<br>
+REQ-011 — O sistema deve garantir que apenas utilizadores autorizados acedam a dados sensíveis. (NFR)
 
-<h2>Necessidade #12</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
+REQ-012 — O sistema deve sincronizar automaticamente dados registados offline quando houver ligação à internet.
 
-<h2>Necessidade #13</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
 
-<h2>Necessidade #14</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
+---
 
-<h2>Necessidade #15</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
+## Detalhamento dos 6 requisitos principais
 
-<h2>Necessidade #16</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
+### REQ-001 — Sessão de admissão validada
+**Descrição:** O sistema deve permitir registar e validar sessões completas de admissão antes da transição para suporte AMS.  
+**Objetivo:** Garantir que todas as informações necessárias sejam recolhidas e verificadas antes da operação.  
+**Critérios de aceitação:**
+- Não é possível concluir a admissão com campos obrigatórios vazios.
+- Deve existir registo da data e responsável pela validação.
+- O estado da admissão deve ficar armazenado como validado ou pendente.  
+**Impacto da variante:** Não
 
-<h2>Necessidade #17</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
 
-<h2>Necessidade #18</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
+---
 
-<h2>Necessidade #19</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
+### REQ-002 — Registo de evidências rastreáveis
+**Descrição:** O sistema deve armazenar origem, responsável e data de cada evidência associada à admissão.  
+**Objetivo:** Garantir rastreabilidade e confiança das informações utilizadas na transição AMS.  
+**Critérios de aceitação:**
+- Toda evidência deve ter autor identificado.
+- Deve existir data de recolha.
+- Deve ser possível consultar histórico completo.  
+**Impacto da variante:** Sim
 
-<h2>Necessidade #20</h2>
-<p>Feature</p>
-<p>Precisamos indicar se a entrega será direta entre pessoas ou mediada por instituição.</p>
-<br>
+
+---
+
+### REQ-004 — Controlo de acessos RBAC
+**Descrição:** O sistema deve permitir atribuição de permissões por perfil de utilizador.  
+**Objetivo:** Garantir acesso controlado e seguro às funcionalidades do sistema.  
+**Critérios de aceitação:**
+- Utilizadores sem permissão não podem aceder a funções restritas.
+- Alterações de permissões devem ser registadas.
+- Perfis devem ser configuráveis por administradores.  
+**Impacto da variante:** Sim
+
+
+---
+
+### REQ-005 — Auditoria de ações
+**Descrição:** O sistema deve registar todas as ações relevantes realizadas pelos utilizadores.  
+**Objetivo:** Permitir rastreabilidade, controlo e análise de eventos do sistema.  
+**Critérios de aceitação:**
+- Cada ação deve incluir utilizador, data e tipo de operação.
+- Registos não podem ser alterados manualmente.
+- Logs devem poder ser consultados por administradores.  
+**Impacto da variante:** Sim
+
+
+---
+
+### REQ-007 — Desempenho da aplicação mobile
+**Descrição:** A interface principal deve carregar em até 3 segundos sob condições normais de rede móvel.  
+**Objetivo:** Garantir boa experiência do utilizador em dispositivos móveis.  
+**Critérios de aceitação:**
+- Tempo medido desde abertura até interface pronta.
+- Testes realizados em rede móvel padrão.
+- 95% das execuções devem cumprir o limite.  
+**Impacto da variante:** Sim
+
+
+---
+
+### REQ-008 — Eliminação de dados pessoais (GDPR)
+**Descrição:** O sistema deve eliminar ou anonimizar dados pessoais até 30 dias após solicitação.  
+**Objetivo:** Cumprir regulamentações de proteção de dados.  
+**Critérios de aceitação:**
+- Pedido de eliminação registado.
+- Dados removidos ou anonimizados.
+- Confirmação registada no sistema.  
+**Impacto da variante:** Sim
+
+
+---
+
+## Requisitos Não Funcionais (NFR)
+
+### NFR mensuráveis
+
+NFR-01 — Desempenho mobile  
+Interface principal ≤ 3 segundos para 95% dos acessos sob rede móvel padrão.  
+Medição: testes automatizados de desempenho.
+
+NFR-02 — Disponibilidade  
+Tempo de atividade mensal ≥ 99%.  
+Medição: monitorização contínua do sistema.
+
+NFR-03 — Retenção de auditoria  
+Logs armazenados por ≥ 12 meses.  
+Medição: verificação periódica da base de logs.
+
+
+### NFR adicionais
+
+NFR-04 — Conformidade com GDPR para eliminação de dados.
+
+NFR-05 — Controlo de acesso seguro baseado em perfis.
+
+NFR-06 — Sincronização automática de dados offline.
