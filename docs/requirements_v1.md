@@ -1,4 +1,4 @@
-# Requirements v1 — Lab 3 (AMS)
+# Requirements v1 — Lab 3 
 
 ## Lista de requisitos com IDs estáveis
 
