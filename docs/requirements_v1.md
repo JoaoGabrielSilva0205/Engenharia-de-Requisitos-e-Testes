@@ -110,6 +110,76 @@
 
 ---
 
+### REQ-013
+**Descrição:** O sistema deve permitir o registo formal de validação institucional de beneficiários antes da sua ativação no sistema.  
+**Tipo:** FR  
+**Stakeholder:** Instituições parceiras  
+**Prioridade:** Alta  
+**Área AMS:** Sessão de Admissão e Validação  
+
+---
+
+### REQ-014
+**Descrição:** O sistema deve manter histórico completo das validações realizadas, incluindo responsável e data.  
+**Tipo:** NFR  
+**Stakeholder:** Auditoria / Instituições  
+**Prioridade:** Alta  
+**Área AMS:** Evidências e Rastreabilidade  
+
+---
+
+### REQ-015
+**Descrição:** O sistema deve permitir a atualização controlada do estado de beneficiários (ativo, suspenso, revogado).  
+**Tipo:** FR  
+**Stakeholder:** Instituições parceiras  
+**Prioridade:** Média  
+**Área AMS:** Gestão de Utilizadores e Permissões  
+
+---
+
+### REQ-016
+**Descrição:** O sistema deve registar todas as alterações de estado realizadas em perfis de utilizadores.  
+**Tipo:** NFR  
+**Stakeholder:** Segurança / Auditoria  
+**Prioridade:** Alta  
+**Área AMS:** Evidências e Rastreabilidade  
+
+---
+
+### REQ-017
+**Descrição:** O sistema deve permitir consulta estruturada de logs por intervalo de datas e tipo de evento.  
+**Tipo:** FR  
+**Stakeholder:** Administrador do sistema  
+**Prioridade:** Média  
+**Área AMS:** Exportação e Relatórios  
+
+---
+
+### REQ-018
+**Descrição:** O sistema deve garantir integridade dos registos de auditoria, impedindo alterações manuais não autorizadas.  
+**Tipo:** NFR  
+**Stakeholder:** Segurança da Informação  
+**Prioridade:** Alta  
+**Área AMS:** Evidências e Rastreabilidade  
+
+---
+
+### REQ-019
+**Descrição:** O sistema deve garantir que 95% das operações críticas sejam processadas em até 2 segundos sob carga normal.  
+**Tipo:** NFR (mensurável)  
+**Stakeholder:** Utilizadores / Operações  
+**Prioridade:** Média  
+**Área AMS:** Desempenho e Operação Mobile  
+
+---
+
+### REQ-020
+**Descrição:** O sistema deve garantir que dados pessoais sensíveis sejam armazenados com mecanismos de proteção adequados contra acesso não autorizado.  
+**Tipo:** NFR  
+**Stakeholder:** Compliance / Segurança  
+**Prioridade:** Alta  
+**Área AMS:** Privacidade e Conformidade  
+
 ## Detalhamento dos 6 requisitos principais
 
 ### REQ-001 — Sessão de admissão validada
