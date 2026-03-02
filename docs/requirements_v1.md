@@ -1,300 +1,211 @@
-# Requirements v1 — Lab 3
+# Requirements v1 — Lab 3 (EcoDoar)
+
+---
 
 ## Lista de requisitos com IDs estáveis
 
 ### REQ-001
-**Descrição:** O sistema deve permitir o registo e validação de sessões de admissão de novos serviços ou componentes.  
-**Tipo:** FR  
-**Stakeholder:** Equipa AMS  
-**Prioridade:** Alta  
-**Área AMS:** Sessão de Admissão e Validação  
+Descrição: O sistema deve permitir o registo de novos utilizadores com dados pessoais básicos.  
+Tipo: FR  
+Stakeholder: Utilizadores  
+Prioridade: Alta  
+Área funcional: Gestão de Utilizadores  
 
 ---
 
 ### REQ-002
-**Descrição:** O sistema deve registar a origem, data e responsável por cada evidência recolhida durante a admissão.  
-**Tipo:** FR  
-**Stakeholder:** Equipa AMS  
-**Prioridade:** Alta  
-**Área AMS:** Evidências e Rastreabilidade  
+Descrição: O sistema deve validar o endereço de email durante o registo de utilizador.  
+Tipo: FR  
+Stakeholder: Utilizadores  
+Prioridade: Alta  
+Área funcional: Gestão de Utilizadores  
 
 ---
 
 ### REQ-003
-**Descrição:** O sistema deve identificar e registar automaticamente informações críticas em falta durante a admissão.  
-**Tipo:** FR  
-**Stakeholder:** Equipa AMS  
-**Prioridade:** Alta  
-**Área AMS:** Sessão de Admissão e Validação  
+Descrição: O sistema deve armazenar e gerir dados do perfil do utilizador.  
+Tipo: FR  
+Stakeholder: Utilizadores  
+Prioridade: Média  
+Área funcional: Gestão de Utilizadores  
 
 ---
 
 ### REQ-004
-**Descrição:** O sistema deve implementar controlo de acessos baseado em papéis (RBAC).  
-**Tipo:** NFR  
-**Stakeholder:** Administrador do sistema  
-**Prioridade:** Alta  
-**Área AMS:** Gestão de Utilizadores e Permissões  
+Descrição: O sistema deve autenticar utilizadores com email e password.  
+Tipo: FR  
+Stakeholder: Utilizadores  
+Prioridade: Alta  
+Área funcional: Autenticação  
 
 ---
 
 ### REQ-005
-**Descrição:** O sistema deve registar todas as ações relevantes em logs de auditoria.  
-**Tipo:** NFR  
-**Stakeholder:** Auditoria / Segurança  
-**Prioridade:** Alta  
-**Área AMS:** Evidências e Rastreabilidade  
+Descrição: O sistema deve registar tentativas falhadas de login.  
+Tipo: NFR  
+Stakeholder: Segurança  
+Prioridade: Média  
+Área funcional: Segurança  
+Impacto da variante: Sim (auditoria)
 
 ---
 
 ### REQ-006
-**Descrição:** O sistema deve permitir exportação de relatórios de admissão e estado do serviço.  
-**Tipo:** FR  
-**Stakeholder:** Gestão / Administração  
-**Prioridade:** Média  
-**Área AMS:** Exportação e Relatórios  
+Descrição: O sistema deve bloquear contas após 5 tentativas consecutivas de login falhadas.  
+Tipo: NFR  
+Stakeholder: Segurança  
+Prioridade: Média  
+Área funcional: Segurança  
+Impacto da variante: Sim
 
 ---
 
 ### REQ-007
-**Descrição:** O sistema deve carregar a interface mobile em até 3 segundos sob condições normais de rede.  
-**Tipo:** NFR (mensurável)  
-**Stakeholder:** Utilizadores mobile  
-**Prioridade:** Alta  
-**Área AMS:** Desempenho e Operação Mobile  
+Descrição: O sistema deve permitir envio de email de recuperação de palavra-passe.  
+Tipo: FR  
+Stakeholder: Utilizadores  
+Prioridade: Alta  
+Área funcional: Autenticação  
 
 ---
 
 ### REQ-008
-**Descrição:** O sistema deve permitir eliminação ou anonimização de dados pessoais em até 30 dias após solicitação.  
-**Tipo:** NFR (mensurável)  
-**Stakeholder:** Utilizadores / Compliance GDPR  
-**Prioridade:** Alta  
-**Área AMS:** Privacidade e Conformidade  
+Descrição: O sistema deve permitir redefinição segura de palavra-passe.  
+Tipo: NFR  
+Stakeholder: Segurança  
+Prioridade: Alta  
+Área funcional: Segurança  
+Impacto da variante: Sim
 
 ---
 
 ### REQ-009
-**Descrição:** O sistema deve garantir disponibilidade mensal mínima de 99%.  
-**Tipo:** NFR (mensurável)  
-**Stakeholder:** Operações / Suporte AMS  
-**Prioridade:** Alta  
-**Área AMS:** Privacidade e Conformidade  
+Descrição: O sistema deve permitir edição dos dados do perfil do utilizador.  
+Tipo: FR  
+Stakeholder: Utilizadores  
+Prioridade: Média  
+Área funcional: Gestão de Utilizadores  
 
 ---
 
 ### REQ-010
-**Descrição:** O sistema deve armazenar logs de auditoria por pelo menos 12 meses.  
-**Tipo:** NFR  
-**Stakeholder:** Auditoria / Compliance  
-**Prioridade:** Média  
-**Área AMS:** Evidências e Rastreabilidade  
+Descrição: O sistema deve permitir eliminação de conta e dados pessoais conforme GDPR.  
+Tipo: NFR (mensurável)  
+Stakeholder: Utilizadores / Compliance  
+Prioridade: Alta  
+Área funcional: Privacidade  
+Impacto da variante: Sim
 
 ---
 
 ### REQ-011
-**Descrição:** O sistema deve garantir que apenas utilizadores autorizados acedam a dados sensíveis.  
-**Tipo:** NFR  
-**Stakeholder:** Segurança da Informação  
-**Prioridade:** Alta  
-**Área AMS:** Gestão de Utilizadores e Permissões  
+Descrição: O sistema deve permitir criação de anúncios de itens com descrição e imagens.  
+Tipo: FR  
+Stakeholder: Doadores  
+Prioridade: Alta  
+Área funcional: Gestão de Doações  
 
 ---
 
 ### REQ-012
-**Descrição:** O sistema deve sincronizar automaticamente dados registados offline quando houver ligação à internet.  
-**Tipo:** NFR  
-**Stakeholder:** Utilizadores mobile  
-**Prioridade:** Média  
-**Área AMS:** Desempenho e Operação Mobile  
+Descrição: O sistema deve permitir edição de itens publicados.  
+Tipo: FR  
+Stakeholder: Doadores  
+Prioridade: Média  
+Área funcional: Gestão de Doações  
 
 ---
 
 ### REQ-013
-**Descrição:** O sistema deve permitir o registo formal de validação institucional de beneficiários antes da sua ativação no sistema.  
-**Tipo:** FR  
-**Stakeholder:** Instituições parceiras  
-**Prioridade:** Alta  
-**Área AMS:** Sessão de Admissão e Validação  
+Descrição: O sistema deve permitir alteração do estado de itens (disponível, reservado, entregue).  
+Tipo: FR  
+Stakeholder: Sistema / Doadores  
+Prioridade: Alta  
+Área funcional: Gestão de Doações  
 
 ---
 
 ### REQ-014
-**Descrição:** O sistema deve manter histórico completo das validações realizadas, incluindo responsável e data.  
-**Tipo:** NFR  
-**Stakeholder:** Auditoria / Instituições  
-**Prioridade:** Alta  
-**Área AMS:** Evidências e Rastreabilidade  
+Descrição: O sistema deve associar automaticamente pedidos de beneficiários a itens disponíveis.  
+Tipo: FR  
+Stakeholder: Beneficiários  
+Prioridade: Alta  
+Área funcional: Correspondência  
 
 ---
 
 ### REQ-015
-**Descrição:** O sistema deve permitir a atualização controlada do estado de beneficiários (ativo, suspenso, revogado).  
-**Tipo:** FR  
-**Stakeholder:** Instituições parceiras  
-**Prioridade:** Média  
-**Área AMS:** Gestão de Utilizadores e Permissões  
+Descrição: O sistema deve notificar utilizadores sobre correspondências de doação.  
+Tipo: FR  
+Stakeholder: Utilizadores  
+Prioridade: Média  
+Área funcional: Notificações  
 
 ---
 
 ### REQ-016
-**Descrição:** O sistema deve registar todas as alterações de estado realizadas em perfis de utilizadores.  
-**Tipo:** NFR  
-**Stakeholder:** Segurança / Auditoria  
-**Prioridade:** Alta  
-**Área AMS:** Evidências e Rastreabilidade  
+Descrição: O sistema deve permitir validação institucional de beneficiários.  
+Tipo: FR  
+Stakeholder: Instituições  
+Prioridade: Alta  
+Área funcional: Validação de Beneficiários  
 
 ---
 
 ### REQ-017
-**Descrição:** O sistema deve permitir consulta estruturada de logs por intervalo de datas e tipo de evento.  
-**Tipo:** FR  
-**Stakeholder:** Administrador do sistema  
-**Prioridade:** Média  
-**Área AMS:** Exportação e Relatórios  
+Descrição: O sistema deve manter histórico de validações de beneficiários.  
+Tipo: NFR  
+Stakeholder: Auditoria  
+Prioridade: Alta  
+Área funcional: Auditoria  
+Impacto da variante: Sim
 
 ---
 
 ### REQ-018
-**Descrição:** O sistema deve garantir integridade dos registos de auditoria, impedindo alterações manuais não autorizadas.  
-**Tipo:** NFR  
-**Stakeholder:** Segurança da Informação  
-**Prioridade:** Alta  
-**Área AMS:** Evidências e Rastreabilidade  
+Descrição: O sistema deve registar todas as ações críticas do sistema em logs de auditoria.  
+Tipo: NFR  
+Stakeholder: Administrador  
+Prioridade: Alta  
+Área funcional: Auditoria  
+Impacto da variante: Sim
 
 ---
 
 ### REQ-019
-**Descrição:** O sistema deve garantir que 95% das operações críticas sejam processadas em até 2 segundos sob carga normal.  
-**Tipo:** NFR (mensurável)  
-**Stakeholder:** Utilizadores / Operações  
-**Prioridade:** Média  
-**Área AMS:** Desempenho e Operação Mobile  
+Descrição: O sistema deve armazenar logs por no mínimo 12 meses.  
+Tipo: NFR (mensurável)  
+Stakeholder: Auditoria  
+Prioridade: Média  
+Área funcional: Auditoria  
+Impacto da variante: Sim
 
 ---
 
 ### REQ-020
-**Descrição:** O sistema deve garantir que dados pessoais sensíveis sejam armazenados com mecanismos de proteção adequados contra acesso não autorizado.  
-**Tipo:** NFR  
-**Stakeholder:** Compliance / Segurança  
-**Prioridade:** Alta  
-**Área AMS:** Privacidade e Conformidade  
-
-## Detalhamento dos 6 requisitos principais
-
-### REQ-001 — Sessão de admissão validada
-
-**Objetivo:** Garantir que todas as informações necessárias sejam recolhidas e verificadas antes da operação.
-
-**Critérios de aceitação:**
-- Não é possível concluir a admissão com campos obrigatórios vazios.
-- Deve existir registo da data e responsável pela validação.
-- O estado deve ficar armazenado como validado ou pendente.
-
-**Impacto da variante:** Não
+Descrição: A interface mobile deve carregar em até 3 segundos para 95% das operações sob carga normal.  
+Tipo: NFR (mensurável)  
+Stakeholder: Utilizadores mobile  
+Prioridade: Alta  
+Área funcional: Desempenho Mobile  
+Impacto da variante: Sim
 
 ---
 
-### REQ-002 — Registo de evidências rastreáveis
+## Requisitos Não Funcionais Mensuráveis
 
-**Objetivo:** Garantir rastreabilidade e confiança das informações utilizadas na transição AMS.
+NFR-01 — Performance Mobile  
+≤ 3 segundos em 95% das operações sob carga normal.
 
-**Critérios de aceitação:**
-- Toda evidência deve ter autor identificado.
-- Deve existir data de recolha.
-- Deve ser possível consultar histórico completo.
+NFR-02 — Retenção de Logs  
+≥ 12 meses de armazenamento.
 
-**Impacto da variante:** Sim
-
----
-
-### REQ-004 — Controlo de acessos RBAC
-
-**Objetivo:** Garantir acesso controlado e seguro às funcionalidades.
-
-**Critérios de aceitação:**
-- Utilizadores sem permissão não podem aceder a funções restritas.
-- Alterações de permissões devem ser registadas.
-- Perfis devem ser configuráveis por administradores.
-
-**Impacto da variante:** Sim
+NFR-03 — Eliminação GDPR  
+Dados removidos em até 30 dias após solicitação.
 
 ---
 
-### REQ-005 — Auditoria de ações
+## Relação com Trello
 
-**Objetivo:** Permitir rastreabilidade e controlo de eventos.
-
-**Critérios de aceitação:**
-- Cada ação deve incluir utilizador, data e tipo de operação.
-- Registos não podem ser alterados manualmente.
-- Logs devem poder ser consultados por administradores.
-
-**Impacto da variante:** Sim
-
----
-
-### REQ-007 — Desempenho mobile
-
-**Objetivo:** Garantir boa experiência em dispositivos móveis.
-
-**Critérios de aceitação:**
-- Interface principal ≤ 3 segundos.
-- Testes em rede móvel padrão.
-- 95% das execuções dentro do limite.
-
-**Impacto da variante:** Sim
-
----
-
-### REQ-008 — Eliminação de dados pessoais (GDPR)
-
-**Objetivo:** Cumprir regulamentações de proteção de dados.
-
-**Critérios de aceitação:**
-- Pedido registado.
-- Dados removidos ou anonimizados.
-- Confirmação registada.
-
-**Impacto da variante:** Sim
-
----
-
-## Requisitos Não Funcionais (NFR)
-
-### NFR mensuráveis
-
-**NFR-01 — Desempenho Mobile**  
-Interface ≤ 3 segundos para 95% dos acessos sob rede móvel padrão.  
-Medição: testes automatizados.
-
-**NFR-02 — Disponibilidade**  
-Tempo de atividade mensal ≥ 99%.  
-Medição: monitorização contínua.
-
-**NFR-03 — Retenção de auditoria**  
-Logs armazenados ≥ 12 meses.  
-Medição: verificação periódica.
-
----
-
-### NFR adicionais
-
-- Conformidade com GDPR.
-- Controlo de acesso baseado em perfis.
-- Sincronização automática offline.
-
----
-
-## Mapeamento Estrutural (AMS → Implementação)
-
-Este documento organiza requisitos segundo áreas AMS.  
-A implementação operacional (Trello) está estruturada por módulos do sistema.
-
-Correspondência:
-
-- Gestão de Utilizadores (Trello) → Gestão de Utilizadores e Permissões (AMS)
-- Auditoria e Segurança (Trello) → Evidências e Rastreabilidade + Privacidade e Conformidade (AMS)
-- Mobile e Desempenho (Trello) → Desempenho e Operação Mobile (AMS)
-
-Este mapeamento garante rastreabilidade entre a estrutura de transição AMS e a estrutura funcional do sistema.
+Cada REQ-### corresponde diretamente a um item de backlog no Trello,
+mantendo rastreabilidade completa entre especificação formal e planeamento de desenvolvimento.
