@@ -1,9 +1,4 @@
-# Requirements Map — Lab 3 (EcoDoar)
-
-Este mapa organiza os requisitos (REQ-###) por área funcional do sistema EcoDoar,
-garantindo rastreabilidade entre especificação formal (GitHub) e planeamento
-operacional (Trello).
-
+# Requirements Map — Lab 3 
 ---
 
 ## EPIC-1 — Gestão de Utilizadores
