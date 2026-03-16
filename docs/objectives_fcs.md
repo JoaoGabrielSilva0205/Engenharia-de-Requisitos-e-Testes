@@ -1,4 +1,4 @@
-# Objectives and Critical Success Factors — Lab 4 (EcoDoar)
+# Objectives and Critical Success Factors (CSFs) — Lab 4 (EcoDoar)
 
 Este documento define os objetivos principais do sistema EcoDoar e os respetivos
 LCRs/FCS (Fatores Críticos de Sucesso), bem como o mapeamento entre LCRs e requisitos.
