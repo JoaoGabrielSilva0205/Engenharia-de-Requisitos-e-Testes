@@ -1,78 +1,96 @@
-# Objectives and Critical Success Factors 
+# Objectives and Critical Success Factors — Lab 4 (EcoDoar)
 
 Este documento define os objetivos principais do sistema EcoDoar e os respetivos
-Fatores Críticos de Sucesso (CSF). Cada objetivo representa um resultado
-estratégico que o sistema deve atingir, enquanto os CSF representam as condições
-necessárias para garantir o sucesso desses objetivos.
+LCRs/FCS (Fatores Críticos de Sucesso), bem como o mapeamento entre LCRs e requisitos.
 
 ---
 
-# Objectives
+## Objectives
 
-## OBJ-1 — Facilitar a gestão de doações entre utilizadores e beneficiários
-
+### OBJ-1 — Facilitar a gestão de utilizadores e doações
 Descrição:  
-O sistema deve permitir que utilizadores publiquem itens para doação e que
-beneficiários possam encontrar e receber esses itens de forma simples e organizada.
+O sistema deve permitir que utilizadores se registem, autentiquem e publiquem itens
+para doação de forma simples e organizada.
 
 Variant impact: No
 
 ---
 
-## OBJ-2 — Garantir segurança e rastreabilidade das ações do sistema
-
+### OBJ-2 — Garantir segurança, controlo de acesso e rastreabilidade
 Descrição:  
-O sistema deve registar e controlar ações críticas realizadas pelos utilizadores,
-permitindo auditoria e verificação de atividades dentro da plataforma.
+O sistema deve proteger acessos, registar ações críticas e manter histórico
+de eventos relevantes para auditoria e segurança.
 
-Variant impact: Yes (Auditoria / Segurança)
+Variant impact: Yes
 
 ---
 
-## OBJ-3 — Assegurar desempenho e acessibilidade em dispositivos móveis
-
+### OBJ-3 — Assegurar privacidade e bom desempenho em dispositivos móveis
 Descrição:  
-O sistema deve oferecer boa experiência de utilização em dispositivos móveis,
-garantindo tempos de resposta rápidos e interface responsiva.
+O sistema deve proteger dados pessoais dos utilizadores e garantir uma boa
+experiência de utilização em ambiente mobile.
 
-Variant impact: Yes (Performance Mobile)
+Variant impact: Yes
 
 ---
 
-# Critical Success Factors (CSF)
+## LCR / CSF
 
-## CSF-1 — Gestão eficiente de utilizadores e autenticação segura
+### LCR-1 — Fluxo eficiente de registo, autenticação e gestão de doações
+Relacionado com: OBJ-1
 
 Descrição:  
-O sistema deve permitir registo, autenticação e gestão de perfis de utilizadores
-de forma segura e confiável.
+O sucesso do sistema depende da capacidade de permitir registo, autenticação,
+publicação de itens e gestão do estado das doações de forma clara e funcional.
 
-Relacionado com variante: Parcial (segurança)
+Requisitos relacionados:
+- REQ-001
+- REQ-004
+- REQ-011
+- REQ-013
+- REQ-014
+
+Variant impact: No
 
 ---
 
-## CSF-2 — Sistema confiável de auditoria e registo de atividades
+### LCR-2 — Segurança operacional e auditoria confiável
+Relacionado com: OBJ-2
 
 Descrição:  
-Todas as ações críticas do sistema devem ser registadas para garantir
-transparência, segurança e capacidade de auditoria.
+O sistema deve controlar acessos, registar eventos importantes e manter logs
+e históricos que apoiem segurança, transparência e rastreabilidade.
 
-Relacionado com variante: Yes (Auditoria)
+Requisitos relacionados:
+- REQ-005
+- REQ-006
+- REQ-017
+- REQ-018
+- REQ-019
+
+Variant impact: Yes
 
 ---
 
-## CSF-3 — Desempenho adequado da plataforma em ambiente mobile
+### LCR-3 — Privacidade dos dados e desempenho mobile
+Relacionado com: OBJ-3
 
 Descrição:  
-A plataforma deve garantir desempenho estável e tempos de resposta rápidos
-para utilizadores que acedem através de dispositivos móveis.
+O sistema deve tratar dados pessoais em conformidade com privacidade e
+oferecer desempenho adequado em dispositivos móveis.
 
-Relacionado com variante: Yes (Performance Mobile)
+Requisitos relacionados:
+- REQ-008
+- REQ-010
+- REQ-015
+- REQ-020
+
+Variant impact: Yes
 
 ---
 
-# Relationship Between Objectives and CSF
+## Relationship Summary
 
-OBJ-1 → CSF-1  
-OBJ-2 → CSF-2  
-OBJ-3 → CSF-3
+- OBJ-1 → LCR-1
+- OBJ-2 → LCR-2
+- OBJ-3 → LCR-3
