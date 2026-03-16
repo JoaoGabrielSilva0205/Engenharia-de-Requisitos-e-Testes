@@ -1,4 +1,3 @@
-≥ 8 entradas REM completas (valores preenchidos, com base nos campos do arquivo REM_v2.xlsx)
 # REM v1 — Lab 4 (EcoDoar)
 
 Este documento apresenta a REM v1 do sistema EcoDoar com base nos requisitos
