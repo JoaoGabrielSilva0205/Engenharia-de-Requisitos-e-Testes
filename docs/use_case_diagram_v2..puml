@@ -1,1 +1,34 @@
+@startuml
+left to right direction
 
+actor "Doador" as D
+actor "Beneficiário" as B
+actor "Sistema de Notificações" as SN
+
+rectangle "EcoDoar Platform" {
+
+  usecase "UC-01 Criar anúncio de item" as UC1
+  usecase "UC-02 Editar anúncio de item" as UC2
+  usecase "UC-03 Alterar estado do item" as UC3
+  usecase "UC-04 Solicitar item disponível" as UC4
+  usecase "UC-05 Associar pedido a item" as UC5
+  usecase "UC-06 Notificar utilizadores" as UC6
+
+}
+
+' Associações
+D --> UC1
+D --> UC2
+D --> UC3
+
+B --> UC4
+
+D --> UC5
+B --> UC5
+
+SN --> UC6
+
+' Relação lógica (sem include)
+UC5 --> UC6
+
+@enduml
