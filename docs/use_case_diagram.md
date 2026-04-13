@@ -18,4 +18,4 @@
 - UC-06: Notificar utilizadores sobre correspondência
 
 ## Diagram file
-- Path: `docs/diagrams/use_case_diagram.puml`
+- Path: `docs/use_case_diagram.puml`
