@@ -36,7 +36,7 @@ E2. Falha no upload de imagem → sistema pede nova imagem ou permite continuar 
 - Trigger: Beneficiário seleciona um item e clica em "Solicitar"
 - Postconditions (success): Pedido registado no sistema
 - Postconditions (failure/cancel): Nenhum pedido é registado
-- Related requirements: REQ-014
+- Related requirements: REQ-014, REQ-015
 
 ### Main flow (happy path)
 1. Beneficiário navega na lista de itens disponíveis
