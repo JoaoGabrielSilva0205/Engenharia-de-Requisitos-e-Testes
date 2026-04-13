@@ -18,7 +18,7 @@
   - Nenhum
 
 - Requirement without use cases:
-  - REQ-001 a REQ-010 não estão cobertos nesta fatia (fora do escopo)
+  - REQ-001 a REQ-010 não estão cobertos nesta fatia 
 
 - Missing requirement candidates revealed by modeling:
   - Requisito ausente: validação de conteúdo dos anúncios (ex: imagens inválidas, texto inadequado)
