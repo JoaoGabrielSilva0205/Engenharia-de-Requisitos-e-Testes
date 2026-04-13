@@ -16,3 +16,6 @@
 - UC-04: Solicitar item disponível
 - UC-05: Associar pedido a item disponível
 - UC-06: Notificar utilizadores sobre correspondência
+
+## Diagram file
+- Path: `docs/diagrams/use_case_diagram.puml`
