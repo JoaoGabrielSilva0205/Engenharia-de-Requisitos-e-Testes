@@ -21,12 +21,16 @@
 
 ### Alternative flows (min. 2)
 A1. Dados incompletos → sistema solicita correção
+<br>
 A2. Doador cancela → sistema descarta operação
+<br>
 A3. Imagem opcional não fornecida → sistema aceita sem imagem
 
 ### Exceptions / errors (min. 2)
 E1. Falha ao guardar dados → sistema informa erro
+<br>
 E2. Falha no upload de imagem → sistema permite repetir
+<br>
 E3. Erro de validação → sistema bloqueia criação
 
 ---
@@ -50,12 +54,16 @@ E3. Erro de validação → sistema bloqueia criação
 
 ### Alternative flows (min. 2)
 A1. Item já reservado → sistema informa indisponibilidade
+<br>
 A2. Beneficiário cancela → sistema não regista pedido
+<br>
 A3. Múltiplos pedidos → sistema coloca em fila
 
 ### Exceptions / errors (min. 2)
 E1. Falha no sistema → pedido não registado
+<br>
 E2. Dados inconsistentes → operação rejeitada
+<br>
 E3. Falha de comunicação → tentativa posterior
 
 ---
