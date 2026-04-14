@@ -44,9 +44,11 @@ E2. Falha no upload de imagem → sistema pede nova imagem ou permite continuar 
 3. Beneficiário seleciona a opção "Solicitar item"
 4. Sistema regista o pedido
 5. Sistema associa o pedido ao item
+6. Sistema altera o estado para "reservado"
 
 ### Alternative flows
-A1. Item já reservado → sistema informa indisponibilidade
+A1. CRIAR UM ALTERNATIVE 
+<br>
 A2. Beneficiário cancela pedido → sistema não regista a solicitação
 
 ### Exceptions / errors
