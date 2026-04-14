@@ -20,10 +20,12 @@
 
 ### Alternative flows
 A1. Dados incompletos → sistema solicita preenchimento dos campos obrigatórios
+<br>
 A2. Doador cancela operação → sistema descarta os dados inseridos
 
 ### Exceptions / errors
 E1. Erro ao guardar dados → sistema informa falha e solicita nova tentativa
+<br>
 E2. Falha no upload de imagem → sistema pede nova imagem ou permite continuar sem imagem
 
 ---
@@ -53,6 +55,7 @@ A2. Beneficiário cancela pedido → sistema não regista a solicitação
 
 ### Exceptions / errors
 E1. Falha na comunicação com o sistema → pedido não é registado
+<br>
 E2. Dados inconsistentes → sistema rejeita operação
 
 ---
@@ -76,8 +79,10 @@ E2. Dados inconsistentes → sistema rejeita operação
 
 ### Alternative flows
 A1. Nenhum item disponível → pedido fica em espera
+<br>
 A2. Vários pedidos para o mesmo item → sistema aplica regra de prioridade
 
 ### Exceptions / errors
 E1. Falha na associação → sistema mantém pedido pendente
+<br>
 E2. Erro no envio de notificação → sistema regista falha e tenta novamente
