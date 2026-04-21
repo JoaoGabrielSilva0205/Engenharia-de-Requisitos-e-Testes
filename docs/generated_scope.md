@@ -1,1 +1,1 @@
-Usar este ficheiro para o lab8
+ficheiro para o LAB 8
