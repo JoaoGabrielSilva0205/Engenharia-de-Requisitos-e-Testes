@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+// REQ-016: Validação de beneficiários
+// REQ-017: Histórico
+// REQ-018: Logs de auditoria
+// UC: Validação de beneficiário
+
 public class Main {
 
     public static void main(String[] args) {
