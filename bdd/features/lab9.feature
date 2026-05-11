@@ -23,3 +23,17 @@ Feature: Gestão de autenticação e validação no EcoDoar
     When a instituição valida os documentos submetidos
     Then o beneficiário deve ficar validado
     And o sistema deve guardar o histórico da validação
+
+  Scenario: Negative path — Registo com email inválido
+    Given que o utilizador está no formulário de registo
+    When introduz um email inválido
+    Then o sistema deve rejeitar o registo
+    And deve apresentar mensagem de erro
+
+  Scenario: Happy path — Criar anúncio de item
+    Given que o doador está autenticado
+    And possui dados válidos do item
+    When submete um novo anúncio
+    Then o sistema deve criar o anúncio
+    And o item deve ficar disponível
+    And a ação deve ser registada em log
