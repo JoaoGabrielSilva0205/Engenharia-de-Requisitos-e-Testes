@@ -1,6 +1,7 @@
 # Acceptance Criteria — Lab 7
 
 ## REQ-001 — Registo de utilizadores
+- usar o Guiven/when/then
 - AC-1: O sistema deve permitir inserir nome, email e password
 - AC-2: O sistema rejeita emails inválidos
 - AC-3: O utilizador recebe confirmação de registo
@@ -8,7 +9,6 @@
 ---
 
 ## REQ-004 — Autenticação (Given/When/Then)
-- Usar os AC 
 - Given que o utilizador está registado
 - When introduz email e password corretos
 - Then deve conseguir aceder ao sistema
