@@ -8,6 +8,7 @@
 ---
 
 ## REQ-004 — Autenticação (Given/When/Then)
+- Usar os AC 
 - Given que o utilizador está registado
 - When introduz email e password corretos
 - Then deve conseguir aceder ao sistema
