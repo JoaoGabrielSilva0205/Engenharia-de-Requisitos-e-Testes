@@ -2,7 +2,7 @@
 
 ## TC-001 — Registo de novo utilizador com dados válidos
 
-- Type: System
+- Type: Funcional
 - Priority: H
 - Related requirements: REQ-001, REQ-002
 - Preconditions:
