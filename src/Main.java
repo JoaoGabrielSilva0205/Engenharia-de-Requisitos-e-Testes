@@ -29,9 +29,13 @@ public class Main {
                 case 1:
                     System.out.print("Nome do beneficiário: ");
                     String name = scanner.nextLine();
-                    service.validateBeneficiary(name);
+                    boolean result = service.validateBeneficiary(name);
+                    if (result) {
+                        System.out.println("Beneficiário validado.");
+                    } else {
+                        System.out.println("Erro: nome inválido.");
+                    }
                     break;
-
                 case 2:
                     service.showHistory();
                     break;
