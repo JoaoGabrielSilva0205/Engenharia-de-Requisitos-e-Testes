@@ -9,6 +9,14 @@ class LogEntry {
         this.action = action;
     }
 
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
     public String toString() {
         return timestamp + " | " + action;
     }
