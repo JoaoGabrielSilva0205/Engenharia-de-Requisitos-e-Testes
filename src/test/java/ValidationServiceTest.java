@@ -69,4 +69,26 @@ public class ValidationServiceTest {
 
         assertTrue(result);
     }
+
+    // Happy path
+    @Test
+    void shouldStoreBeneficiaryNameInHistory() {
+    
+        ValidationService service = new ValidationService();
+    
+        service.validateBeneficiary("Ana");
+    
+        assertEquals("Ana", service.getHistory().get(0).getName());
+    }
+    
+    // Happy path
+    @Test
+    void shouldStoreValidStatusInHistory() {
+    
+        ValidationService service = new ValidationService();
+    
+        service.validateBeneficiary("Pedro");
+    
+        assertEquals("VALID", service.getHistory().get(0).getStatus());
+    }
 }
