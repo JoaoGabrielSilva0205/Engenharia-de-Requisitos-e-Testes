@@ -11,6 +11,18 @@ class ValidationRecord {
         this.timestamp = timestamp;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
     public String toString() {
         return name + " | " + status + " | " + timestamp;
     }
