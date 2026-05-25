@@ -7,24 +7,26 @@ class ValidationService {
     private List<ValidationRecord> history = new ArrayList<>();
     private List<LogEntry> logs = new ArrayList<>();
 
-    public void validateBeneficiary(String name) {
+    public boolean validateBeneficiary(String name) {
 
         Date now = new Date();
 
-        // Validação de input
         if (name == null || name.trim().isEmpty()) {
-            System.out.println("Erro: nome inválido.");
             addLog(now, "Validation failed");
-            return;
+            return false;
         }
 
-        // Registar validação
         history.add(new ValidationRecord(name, "VALID", now));
-
-        System.out.println("Beneficiário validado.");
-
-        // Log obrigatório
         addLog(now, "Validation success: " + name);
+        return true;
+    }
+
+    public List<ValidationRecord> getHistory() {
+        return history;
+    }
+
+    public List<LogEntry> getLogs() {
+        return logs;
     }
 
     public void showHistory() {
