@@ -6,18 +6,47 @@ class ValidationService {
 
     private List<ValidationRecord> history = new ArrayList<>();
     private List<LogEntry> logs = new ArrayList<>();
+    private BeneficiaryRepository repository;
 
-    public boolean validateBeneficiary(String name) {
+    public ValidationService() {
+        this.repository = new BeneficiaryRepository("data/beneficiaries.json");
+    }
+
+    public ValidationService(BeneficiaryRepository repository) {
+        this.repository = repository;
+    }
+
+    public void createBeneficiary(Beneficiary beneficiary) {
+        repository.append(beneficiary);
+    }
+
+    public boolean validateBeneficiaryById(int id) {
 
         Date now = new Date();
 
-        if (name == null || name.trim().isEmpty()) {
-            addLog(now, "Validation failed");
+        Beneficiary beneficiary = repository.findById(id);
+
+        if (beneficiary == null) {
+            addLog(now, "Validation failed: beneficiary not found");
             return false;
         }
 
-        history.add(new ValidationRecord(name, "VALID", now));
-        addLog(now, "Validation success: " + name);
+        if (beneficiary.getName() == null || beneficiary.getName().trim().isEmpty()) {
+            addLog(now, "Validation failed: invalid beneficiary name");
+            return false;
+        }
+
+        history.add(
+            new ValidationRecord(
+                beneficiary.getId(),
+                beneficiary.getName(),
+                "VALID",
+                now
+            )
+        );
+
+        addLog(now, "Validation success: " + beneficiary.getName());
+
         return true;
     }
 
@@ -45,5 +74,8 @@ class ValidationService {
 
     private void addLog(Date timestamp, String action) {
         logs.add(new LogEntry(timestamp, action));
+    }
+    public BeneficiaryRepository getRepository() {
+        return repository;
     }
 }

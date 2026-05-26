@@ -1,94 +1,176 @@
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ValidationServiceTest {
 
-    // Happy path
+    private ValidationService createServiceWithTestJson() {
+        String path = "data/test-beneficiaries.json";
+
+        File file = new File(path);
+        if (file.exists()) {
+            file.delete();
+        }
+
+        BeneficiaryRepository repository = new BeneficiaryRepository(path);
+        return new ValidationService(repository);
+    }
+
     @Test
-    void shouldValidateBeneficiaryWithValidName() {
+    void shouldCreateAndValidateBeneficiaryWithValidData() {
+        ValidationService service = createServiceWithTestJson();
 
-        ValidationService service = new ValidationService();
+        Beneficiary beneficiary = new Beneficiary(1, "João");
+        service.createBeneficiary(beneficiary);
 
-        boolean result = service.validateBeneficiary("João");
+        boolean result = service.validateBeneficiaryById(1);
 
         assertTrue(result);
     }
 
-    // Negative test
     @Test
-    void shouldRejectEmptyName() {
+    void shouldRejectBeneficiaryWithEmptyName() {
+        ValidationService service = createServiceWithTestJson();
 
-        ValidationService service = new ValidationService();
+        Beneficiary beneficiary = new Beneficiary(1, "");
+        service.createBeneficiary(beneficiary);
 
-        boolean result = service.validateBeneficiary("");
+        boolean result = service.validateBeneficiaryById(1);
 
         assertFalse(result);
     }
 
-    // Negative test
     @Test
-    void shouldRejectNullName() {
+    void shouldRejectBeneficiaryNotFound() {
+        ValidationService service = createServiceWithTestJson();
 
-        ValidationService service = new ValidationService();
-
-        boolean result = service.validateBeneficiary(null);
+        boolean result = service.validateBeneficiaryById(999);
 
         assertFalse(result);
     }
 
-    // Happy path
     @Test
     void shouldStoreValidationInHistory() {
+        ValidationService service = createServiceWithTestJson();
 
-        ValidationService service = new ValidationService();
+        Beneficiary beneficiary = new Beneficiary(1, "Maria");
+        service.createBeneficiary(beneficiary);
 
-        service.validateBeneficiary("Maria");
+        service.validateBeneficiaryById(1);
 
         assertEquals(1, service.getHistory().size());
     }
 
-    // Happy path
     @Test
     void shouldCreateAuditLog() {
+        ValidationService service = createServiceWithTestJson();
 
-        ValidationService service = new ValidationService();
+        Beneficiary beneficiary = new Beneficiary(1, "Carlos");
+        service.createBeneficiary(beneficiary);
 
-        service.validateBeneficiary("Carlos");
+        service.validateBeneficiaryById(1);
 
         assertEquals(1, service.getLogs().size());
     }
 
-    // Boundary test
     @Test
-    void shouldAcceptNameWithSingleCharacter() {
+    void shouldAcceptSingleCharacterName() {
+        ValidationService service = createServiceWithTestJson();
 
-        ValidationService service = new ValidationService();
+        Beneficiary beneficiary = new Beneficiary(1, "A");
+        service.createBeneficiary(beneficiary);
 
-        boolean result = service.validateBeneficiary("A");
+        boolean result = service.validateBeneficiaryById(1);
 
         assertTrue(result);
     }
 
-    // Happy path
     @Test
     void shouldStoreBeneficiaryNameInHistory() {
-    
-        ValidationService service = new ValidationService();
-    
-        service.validateBeneficiary("Ana");
-    
-        assertEquals("Ana", service.getHistory().get(0).getName());
+        ValidationService service = createServiceWithTestJson();
+
+        Beneficiary beneficiary = new Beneficiary(1, "Ana");
+        service.createBeneficiary(beneficiary);
+
+        service.validateBeneficiaryById(1);
+
+        assertEquals("Ana", service.getHistory().get(0).getBeneficiaryName());
     }
-    
-    // Happy path
+
     @Test
     void shouldStoreValidStatusInHistory() {
-    
-        ValidationService service = new ValidationService();
-    
-        service.validateBeneficiary("Pedro");
-    
+        ValidationService service = createServiceWithTestJson();
+
+        Beneficiary beneficiary = new Beneficiary(1, "Pedro");
+        service.createBeneficiary(beneficiary);
+
+        service.validateBeneficiaryById(1);
+
         assertEquals("VALID", service.getHistory().get(0).getStatus());
+    }
+    @Test
+    void shouldCreateMultipleBeneficiariesInJsonFile() {
+        ValidationService service = createServiceWithTestJson();
+
+        service.createBeneficiary(new Beneficiary(1, "João"));
+        service.createBeneficiary(new Beneficiary(2, "Maria"));
+        service.createBeneficiary(new Beneficiary(3, "Ana"));
+
+        assertEquals(3, service.getRepository().findAll().size());
+    }
+
+    @Test
+    void shouldValidateSecondBeneficiaryById() {
+        ValidationService service = createServiceWithTestJson();
+
+        service.createBeneficiary(new Beneficiary(1, "João"));
+        service.createBeneficiary(new Beneficiary(2, "Maria"));
+
+        boolean result = service.validateBeneficiaryById(2);
+
+        assertTrue(result);
+        assertEquals("Maria", service.getHistory().get(0).getBeneficiaryName());
+    }
+    @Test
+    void shouldValidateThirdBeneficiaryById() {
+        ValidationService service = createServiceWithTestJson();
+
+        service.createBeneficiary(new Beneficiary(1, "João"));
+        service.createBeneficiary(new Beneficiary(2, "Maria"));
+        service.createBeneficiary(new Beneficiary(3, "Carlos"));
+
+        boolean result = service.validateBeneficiaryById(3);
+
+        assertTrue(result);
+        assertEquals(3, service.getHistory().get(0).getBeneficiaryId());
+        assertEquals("Carlos", service.getHistory().get(0).getBeneficiaryName());
+    }
+    @Test
+    void shouldKeepHistoryForMultipleValidatedBeneficiaries() {
+        ValidationService service = createServiceWithTestJson();
+
+        service.createBeneficiary(new Beneficiary(1, "João"));
+        service.createBeneficiary(new Beneficiary(2, "Maria"));
+        service.createBeneficiary(new Beneficiary(3, "Ana"));
+
+        service.validateBeneficiaryById(1);
+        service.validateBeneficiaryById(2);
+        service.validateBeneficiaryById(3);
+
+        assertEquals(3, service.getHistory().size());
+    }
+    @Test
+    void shouldCreateLogsForMultipleValidations() {
+        ValidationService service = createServiceWithTestJson();
+
+        service.createBeneficiary(new Beneficiary(1, "João"));
+        service.createBeneficiary(new Beneficiary(2, "Maria"));
+
+        service.validateBeneficiaryById(1);
+        service.validateBeneficiaryById(2);
+
+        assertEquals(2, service.getLogs().size());
     }
 }

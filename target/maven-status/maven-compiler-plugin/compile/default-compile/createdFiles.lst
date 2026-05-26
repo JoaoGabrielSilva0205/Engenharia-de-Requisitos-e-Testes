@@ -1,5 +1,6 @@
 Main.class
 LogEntry.class
+BeneficiaryRepository.class
 Beneficiary.class
 ValidationRecord.class
 ValidationService.class

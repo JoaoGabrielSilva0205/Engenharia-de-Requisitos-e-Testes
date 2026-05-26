@@ -1,18 +1,26 @@
 import java.util.Date;
 
 class ValidationRecord {
-    private String name;
+
+    private int beneficiaryId;
+    private String beneficiaryName;
     private String status;
     private Date timestamp;
 
-    public ValidationRecord(String name, String status, Date timestamp) {
-        this.name = name;
+    public ValidationRecord(int beneficiaryId, String beneficiaryName, String status, Date timestamp) {
+
+        this.beneficiaryId = beneficiaryId;
+        this.beneficiaryName = beneficiaryName;
         this.status = status;
         this.timestamp = timestamp;
     }
 
-    public String getName() {
-        return name;
+    public int getBeneficiaryId() {
+        return beneficiaryId;
+    }
+
+    public String getBeneficiaryName() {
+        return beneficiaryName;
     }
 
     public String getStatus() {
@@ -24,6 +32,6 @@ class ValidationRecord {
     }
 
     public String toString() {
-        return name + " | " + status + " | " + timestamp;
+        return beneficiaryId + " | " + beneficiaryName + " | " + status + " | " + timestamp;
     }
 }

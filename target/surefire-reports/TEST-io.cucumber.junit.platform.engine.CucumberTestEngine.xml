@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ValidationServiceTest" time="0.219" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="io.cucumber.junit.platform.engine.CucumberTestEngine" time="0.029" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="cucumber.features" value="src/test/resources/bdd/features/lab11.feature"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -57,25 +57,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="55.0"/>
   </properties>
-  <testcase name="shouldRejectBeneficiaryNotFound" classname="ValidationServiceTest" time="0.079">
-    <system-err><![CDATA[May 26, 2026 8:45:24 AM io.cucumber.junit.platform.engine.DiscoverySelectorResolver warnWhenCucumberFeaturesPropertyIsUsed
-WARNING: Discovering tests using the cucumber.features property. Other discovery selectors are ignored!
-
-This is a work around for the limited JUnit 5 support in Maven and Gradle. Please request/upvote/sponsor/ect better support for JUnit 5 discovery selectors. For details see: https://github.com/cucumber/cucumber-jvm/pull/2498
-
-If you are using the JUnit 5 Suite Engine, Platform Launcher API or Console Launcher you should not use this property. Please consult the JUnit 5 documentation on test selection.
-]]></system-err>
-  </testcase>
-  <testcase name="shouldCreateAndValidateBeneficiaryWithValidData" classname="ValidationServiceTest" time="0.044"/>
-  <testcase name="shouldStoreValidationInHistory" classname="ValidationServiceTest" time="0.003"/>
-  <testcase name="shouldValidateSecondBeneficiaryById" classname="ValidationServiceTest" time="0.005"/>
-  <testcase name="shouldCreateLogsForMultipleValidations" classname="ValidationServiceTest" time="0.003"/>
-  <testcase name="shouldValidateThirdBeneficiaryById" classname="ValidationServiceTest" time="0.002"/>
-  <testcase name="shouldKeepHistoryForMultipleValidatedBeneficiaries" classname="ValidationServiceTest" time="0.003"/>
-  <testcase name="shouldStoreValidStatusInHistory" classname="ValidationServiceTest" time="0.006"/>
-  <testcase name="shouldStoreBeneficiaryNameInHistory" classname="ValidationServiceTest" time="0.004"/>
-  <testcase name="shouldRejectBeneficiaryWithEmptyName" classname="ValidationServiceTest" time="0.004"/>
-  <testcase name="shouldCreateAuditLog" classname="ValidationServiceTest" time="0.007"/>
-  <testcase name="shouldCreateMultipleBeneficiariesInJsonFile" classname="ValidationServiceTest" time="0.004"/>
-  <testcase name="shouldAcceptSingleCharacterName" classname="ValidationServiceTest" time="0.006"/>
+  <testcase name="Happy path — validar beneficiário com nome válido" classname="Beneficiary Validation" time="0.085"/>
+  <testcase name="Happy path — validar beneficiário com nome válido" classname="Beneficiary Validation" time="0.005"/>
+  <testcase name="Negative path — rejeitar beneficiário sem nome" classname="Beneficiary Validation" time="0.004"/>
+  <testcase name="Negative path — rejeitar beneficiário sem nome" classname="Beneficiary Validation" time="0.004"/>
 </testsuite>
