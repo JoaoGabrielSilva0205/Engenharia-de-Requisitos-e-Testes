@@ -1,0 +1,40 @@
+Fase de Testes
+
+Prompt 1
+Preciso criar testes unitários em Java usando JUnit para um projeto da disciplina de Engenharia de Requisitos e Testes. 
+Os testes devem validar regras de negócio relacionadas à validação de beneficiários, histórico e logs de auditoria.
+Ajude-me a criar testes unitários alinhados com REQ-016, REQ-017 e REQ-018.
+
+Prompt 2
+Ajude-me a adicionar testes negativos e testes limite para uma classe Java chamada ValidationService.
+O sistema deve rejeitar nomes vazios ou nulos e aceitar nomes válidos.
+Os testes devem usar assertTrue, assertFalse e assertEquals com JUnit.
+
+Prompt 3
+Preciso adaptar uma classe Java existente para permitir testes unitários.
+A classe atualmente imprime resultados no terminal, mas quero retornar valores booleanos e expor métodos getHistory() e getLogs() para facilitar validação automatizada com JUnit.
+
+Prompt 4
+Ajude-me a configurar um projeto Java com Maven e JUnit para executar testes unitários.
+Preciso de um pom.xml simples compatível com Java 11 e execução de testes usando mvn test.
+
+Prompt 5
+Como executar testes unitários JUnit em um projeto Maven usando terminal?
+Preciso dos comandos para executar todos os testes e um único ficheiro de teste.
+
+Prompt 6
+Ajude-me a criar um ficheiro docs/test_execution.md para um projeto Java com JUnit.
+O documento deve explicar requisitos, setup e comandos para execução local dos testes.
+
+Prompt 7
+Ajude-me a criar um relatório docs/unit_test_report.md para um laboratório de testes unitários.
+O relatório deve incluir:
+- requisitos selecionados;
+- critérios de aceitação automatizados;
+- lista de testes;
+- cobertura happy path, negative e boundary;
+- evidências da execução.
+
+Prompt 8
+Ajude-me a escrever um ficheiro bdd/features/lab11.feature utilizando sintaxe Given/When/Then.
+O cenário deve validar comportamento de validação de beneficiários e logs de auditoria.
