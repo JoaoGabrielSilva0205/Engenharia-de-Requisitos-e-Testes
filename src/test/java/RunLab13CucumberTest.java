@@ -1,3 +1,5 @@
+package ecodoar;
+
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
@@ -9,7 +11,7 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("bdd/features/lab13.feature")
-@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "")
+@ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "ecodoar")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
 public class RunLab13CucumberTest {
 }

@@ -1,6 +1,8 @@
+package ecodoar;
+
 import java.util.Date;
 
-class LogEntry {
+public class LogEntry {
     private Date timestamp;
     private String action;
 

@@ -1,3 +1,5 @@
+package ecodoar;
+
 import java.util.Scanner;
 
 // REQ-016: Validação de beneficiários

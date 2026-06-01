@@ -1,6 +1,8 @@
+package ecodoar;
+
 import java.util.Date;
 
-class ValidationRecord {
+public class ValidationRecord {
 
     private int beneficiaryId;
     private String beneficiaryName;
