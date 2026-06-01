@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: RunCucumberTest
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.857 s <<< FAILURE! -- in RunCucumberTest
-Beneficiary Validation.Happy path — validar beneficiário com nome válido -- Time elapsed: 0.534 s <<< ERROR!
-java.lang.NullPointerException
-	at BeneficiarySteps.a_validação_do_beneficiário_é_executada(BeneficiarySteps.java:29)
-	at ✽.a validação do beneficiário é executada(classpath:bdd/features/lab11.feature:8)
-

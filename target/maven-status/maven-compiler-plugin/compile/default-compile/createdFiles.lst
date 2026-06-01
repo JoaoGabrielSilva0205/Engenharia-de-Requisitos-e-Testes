@@ -1,6 +1,8 @@
-Main.class
-LogEntry.class
-BeneficiaryRepository.class
-Beneficiary.class
-ValidationRecord.class
-ValidationService.class
+ecodoar/ValidationService.class
+ecodoar/LogEntry.class
+ecodoar/Main.class
+ecodoar/EcoDoarWebController.class
+ecodoar/Beneficiary.class
+ecodoar/ValidationRecord.class
+ecodoar/BeneficiaryRepository.class
+ecodoar/EcoDoarApplication.class

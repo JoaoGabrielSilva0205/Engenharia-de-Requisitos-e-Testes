@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDoar | Início</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">EcoDoar</a>
+        <div class="nav-links">
+            <a th:href="@{/beneficiaries}">Beneficiários</a>
+            <a th:href="@{/validation}">Validação</a>
+            <a th:href="@{/history}">Histórico</a>
+            <a th:href="@{/logs}">Logs</a>
+            <a th:href="@{/tests}">Testes</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="hero card">
+        <span class="eyebrow">Engenharia de Requisitos e Testes</span>
+        <h1>EcoDoar</h1>
+        <p>
+            Sistema demonstrável para registar beneficiários, validar a sua elegibilidade institucional,
+            manter histórico de validações e apresentar logs de auditoria.
+        </p>
+        <div class="actions">
+            <a class="button primary" th:href="@{/beneficiaries}">Gerir beneficiários</a>
+            <a class="button secondary" th:href="@{/validation}">Validar beneficiário</a>
+        </div>
+    </section>
+
+    <section class="grid three-columns">
+        <article class="card requirement">
+            <h2>REQ-016</h2>
+            <p>Validação institucional de beneficiários existentes no repositório JSON.</p>
+        </article>
+        <article class="card requirement">
+            <h2>REQ-017</h2>
+            <p>Histórico das validações aprovadas com id, nome, estado e timestamp.</p>
+        </article>
+        <article class="card requirement">
+            <h2>REQ-018</h2>
+            <p>Logs de auditoria para validações concluídas ou rejeitadas.</p>
+        </article>
+    </section>
+
+    <section class="card">
+        <h2>Rastreabilidade</h2>
+        <p>
+            Os requisitos documentados são ligados aos critérios de aceitação, aos testes JUnit e aos cenários BDD.
+            A feature <strong>lab13.feature</strong> cobre o caminho feliz, caminhos negativos, fluxo alternativo de id duplicado
+            e comportamento de fronteira para nome com um caractere.
+        </p>
+        <a class="text-link" th:href="@{/tests}">Ver página de testes e qualidade</a>
+    </section>
+</main>
+</body>
+</html>

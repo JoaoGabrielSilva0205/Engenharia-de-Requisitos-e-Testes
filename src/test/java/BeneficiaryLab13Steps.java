@@ -31,10 +31,9 @@ public class BeneficiaryLab13Steps {
     }
 
     @Given("que existe um beneficiário com nome {string} e id {int}")
-    @When("que existe um beneficiário com nome {string} e id {int}")
     public void que_existe_um_beneficiario_com_nome_e_id(String nome, Integer id) {
-        existe_um_beneficiario_com_id_e_nome(id, nome);
-        validationResult = service.validateBeneficiaryById(id);
+    existe_um_beneficiario_com_id_e_nome(id, nome);
+    validationResult = service.validateBeneficiaryById(id);
     }
 
     @Given("que existe um beneficiário com nome {string}")
@@ -42,7 +41,6 @@ public class BeneficiaryLab13Steps {
         existe_um_beneficiario_com_id_e_nome(1, nome);
     }
 
-    @Given("a validação do beneficiário é executada")
     @When("a validação do beneficiário é executada")
     public void a_validacao_do_beneficiario_e_executada() {
         ensureService();
