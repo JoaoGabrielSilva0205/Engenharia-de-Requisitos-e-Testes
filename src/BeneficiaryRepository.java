@@ -14,13 +14,20 @@ class BeneficiaryRepository {
         createFileIfNotExists();
     }
 
-    public void append(Beneficiary beneficiary) {
-        try (FileWriter writer = new FileWriter(filePath, true)) {
-            writer.write(gson.toJson(beneficiary));
-            writer.write(System.lineSeparator());
-        } catch (IOException e) {
-            throw new RuntimeException("Erro ao adicionar beneficiário ao ficheiro.");
-        }
+    public boolean append(Beneficiary beneficiary) {
+    Map<Integer, Beneficiary> beneficiaries = findAll();
+
+    if (beneficiaries.containsKey(beneficiary.getId())) {
+        return false;
+    }
+
+    try (FileWriter writer = new FileWriter(filePath, true)) {
+        writer.write(gson.toJson(beneficiary));
+        writer.write(System.lineSeparator());
+        return true;
+    } catch (IOException e) {
+        throw new RuntimeException("Erro ao adicionar beneficiário ao ficheiro.");
+    }
     }
 
     public Beneficiary findById(int id) {

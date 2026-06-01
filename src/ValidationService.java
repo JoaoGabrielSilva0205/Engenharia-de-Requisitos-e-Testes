@@ -16,8 +16,8 @@ class ValidationService {
         this.repository = repository;
     }
 
-    public void createBeneficiary(Beneficiary beneficiary) {
-        repository.append(beneficiary);
+    public boolean createBeneficiary(Beneficiary beneficiary) {
+        return repository.append(beneficiary);
     }
 
     public boolean validateBeneficiaryById(int id) {
