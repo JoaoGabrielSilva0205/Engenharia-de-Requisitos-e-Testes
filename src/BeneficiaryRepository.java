@@ -1,10 +1,12 @@
+package ecodoar;
+
 import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-class BeneficiaryRepository {
+public class BeneficiaryRepository {
 
     private final String filePath;
     private final Gson gson = new Gson();
@@ -15,19 +17,19 @@ class BeneficiaryRepository {
     }
 
     public boolean append(Beneficiary beneficiary) {
-    Map<Integer, Beneficiary> beneficiaries = findAll();
+        Map<Integer, Beneficiary> beneficiaries = findAll();
 
-    if (beneficiaries.containsKey(beneficiary.getId())) {
-        return false;
-    }
+        if (beneficiaries.containsKey(beneficiary.getId())) {
+            return false;
+        }
 
-    try (FileWriter writer = new FileWriter(filePath, true)) {
-        writer.write(gson.toJson(beneficiary));
-        writer.write(System.lineSeparator());
-        return true;
-    } catch (IOException e) {
-        throw new RuntimeException("Erro ao adicionar beneficiário ao ficheiro.");
-    }
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            writer.write(gson.toJson(beneficiary));
+            writer.write(System.lineSeparator());
+            return true;
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao adicionar beneficiário ao ficheiro.");
+        }
     }
 
     public Beneficiary findById(int id) {
@@ -55,6 +57,7 @@ class BeneficiaryRepository {
 
         return beneficiaries;
     }
+
     public void clear() {
         try (FileWriter writer = new FileWriter(filePath, false)) {
             writer.write("");
@@ -79,4 +82,4 @@ class BeneficiaryRepository {
             throw new RuntimeException("Erro ao criar ficheiro JSON.");
         }
     }
-}   
+}

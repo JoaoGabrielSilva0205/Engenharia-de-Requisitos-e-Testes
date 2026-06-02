@@ -1,3 +1,5 @@
+package ecodoar;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
@@ -10,33 +12,66 @@ public class BeneficiaryLab13Steps {
     private BeneficiaryRepository repository;
     private boolean validationResult;
     private boolean creationResult;
+    private Integer currentBeneficiaryId;
 
     @Given("que o repositório de beneficiários está vazio")
     public void que_o_repositorio_de_beneficiarios_esta_vazio() {
         repository = new BeneficiaryRepository("data/beneficiaries.json");
         repository.clear();
         service = new ValidationService(repository);
+        currentBeneficiaryId = null;
     }
 
     @Given("existe um beneficiário com id {int} e nome {string}")
     public void existe_um_beneficiario_com_id_e_nome(Integer id, String nome) {
+        ensureService();
         Beneficiary beneficiary = new Beneficiary(id, nome);
         creationResult = service.createBeneficiary(beneficiary);
+        currentBeneficiaryId = id;
+    }
+
+    @Given("que existe um beneficiário com nome {string} e id {int}")
+    @When("que existe um beneficiário com nome {string} e id {int}")
+    public void que_existe_um_beneficiario_com_nome_e_id(String nome, Integer id) {
+        existe_um_beneficiario_com_id_e_nome(id, nome);
+        validationResult = service.validateBeneficiaryById(id);
+    }
+
+    @Given("que existe um beneficiário com nome {string}")
+    public void que_existe_um_beneficiario_com_nome(String nome) {
+        existe_um_beneficiario_com_id_e_nome(1, nome);
+    }
+
+    @Given("a validação do beneficiário é executada")
+    @When("a validação do beneficiário é executada")
+    public void a_validacao_do_beneficiario_e_executada() {
+        ensureService();
+
+        if (currentBeneficiaryId != null) {
+            validationResult = service.validateBeneficiaryById(currentBeneficiaryId);
+        }
     }
 
     @When("a validação do beneficiário com id {int} é executada")
     public void a_validacao_do_beneficiario_com_id_e_executada(Integer id) {
+        ensureService();
         validationResult = service.validateBeneficiaryById(id);
     }
 
     @When("tento criar outro beneficiário com id {int} e nome {string}")
     public void tento_criar_outro_beneficiario_com_id_e_nome(Integer id, String nome) {
+        ensureService();
         Beneficiary beneficiary = new Beneficiary(id, nome);
         creationResult = service.createBeneficiary(beneficiary);
     }
 
     @Then("a validação deve ser concluída com sucesso")
     public void a_validacao_deve_ser_concluida_com_sucesso() {
+        assertTrue(validationResult);
+    }
+
+    @Then("o beneficiário deve ficar validado")
+    public void o_beneficiario_deve_ficar_validado() {
         assertTrue(validationResult);
     }
 
@@ -68,5 +103,14 @@ public class BeneficiaryLab13Steps {
     @Then("o repositório deve conter {int} beneficiário")
     public void o_repositorio_deve_conter_beneficiario(Integer quantidade) {
         assertEquals(quantidade, repository.findAll().size());
+    }
+
+    private void ensureService() {
+        if (service == null) {
+            repository = new BeneficiaryRepository("data/test-bdd-beneficiaries.json");
+            repository.clear();
+            service = new ValidationService(repository);
+            currentBeneficiaryId = null;
+        }
     }
 }

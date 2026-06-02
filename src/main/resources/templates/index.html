@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDoar | Início</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">EcoDoar</a>
+        <div class="nav-links">
+            <a th:href="@{/beneficiaries}">Beneficiários</a>
+            <a th:href="@{/validation}">Validação</a>
+            <a th:href="@{/history}">Histórico</a>
+            <a th:href="@{/logs}">Logs</a>
+            <a th:href="@{/tests}">Testes</a>
+            <a th:if="${isAuthenticated}" th:href="@{/profile}" th:text="${currentUser.displayName}">Perfil</a>
+            <a th:if="${isAuthenticated}" th:href="@{/logout}">Sair</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/login}">Entrar</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+    <div class="alert error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
+    <section class="hero card">
+        <span class="eyebrow">Engenharia de Requisitos e Testes</span>
+        <h1>EcoDoar</h1>
+        <p>
+            Sistema demonstrável para registar beneficiários, validar a sua elegibilidade institucional,
+            manter histórico de validações e apresentar logs de auditoria.
+        </p>
+        <p th:if="${isAuthenticated}" class="session-note">
+            Sessão ativa: <strong th:text="${currentUser.email}">admin@ecodoar.pt</strong>
+            (<span th:text="${currentUser.role}">RED_CROSS_ADMIN</span>).
+        </p>
+        <p th:unless="${isAuthenticated}" class="session-note">
+            Está a navegar como visitante. Pode consultar páginas públicas, mas deve iniciar sessão para criar ou validar beneficiários.
+        </p>
+        <div class="actions">
+            <a class="button primary" th:href="@{/beneficiaries}">Gerir beneficiários</a>
+            <a class="button secondary" th:href="@{/validation}">Validar beneficiário</a>
+            <a class="button secondary" th:unless="${isAuthenticated}" th:href="@{/login}">Iniciar sessão</a>
+        </div>
+    </section>
+
+    <section class="grid three-columns">
+        <article class="card requirement">
+            <h2>REQ-016</h2>
+            <p>Validação institucional de beneficiários existentes no repositório JSON.</p>
+        </article>
+        <article class="card requirement">
+            <h2>REQ-017</h2>
+            <p>Histórico das validações aprovadas com id, nome, estado e timestamp.</p>
+        </article>
+        <article class="card requirement">
+            <h2>REQ-018</h2>
+            <p>Logs de auditoria para validações concluídas, rejeitadas e eventos de autenticação.</p>
+        </article>
+    </section>
+
+    <section class="card">
+        <h2>Account management and security</h2>
+        <p>
+            A autenticação simples por sessão representa o UC04 — Authenticate User. Visitantes podem consultar páginas públicas,
+            enquanto utilizadores autenticados podem executar ações protegidas como criação e validação de beneficiários.
+        </p>
+        <div class="scenario-list">
+            <div><strong>UC01</strong><span>Registar doador com conta ativa.</span></div>
+            <div><strong>UC02</strong><span>Registar beneficiário com conta pendente até aprovação.</span></div>
+            <div><strong>UC03</strong><span>A Cruz Vermelha aprova ou rejeita beneficiários.</span></div>
+            <div><strong>UC04</strong><span>Autenticar utilizador para ações protegidas.</span></div>
+            <div><strong>UC05 / UC06</strong><span>Editar perfil e identificar tipo de doador.</span></div>
+            <div><strong>UC10 / UC11</strong><span>Privacidade, mediação e registo de mediadores.</span></div>
+            <div><strong>UC12 / UC13</strong><span>Visualização segura e logs de auditoria.</span></div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>Beneficiary Validation</h2>
+        <p>
+            O EcoDoar demonstra a necessidade de um sistema estruturado para a Cruz Vermelha validar a elegibilidade
+            de famílias em situação de necessidade. Um beneficiário pode permanecer pendente até ser aprovado ou rejeitado
+            pela entidade responsável.
+        </p>
+    </section>
+
+    <section class="card">
+        <h2>Rastreabilidade</h2>
+        <p>
+            Os requisitos documentados são ligados aos critérios de aceitação, aos testes JUnit e aos cenários BDD.
+            A feature <strong>lab13.feature</strong> cobre o caminho feliz, caminhos negativos, fluxo alternativo de id duplicado
+            e comportamento de fronteira para nome com um caractere.
+        </p>
+        <a class="text-link" th:href="@{/tests}">Ver página de testes e qualidade</a>
+    </section>
+</main>
+</body>
+</html>
