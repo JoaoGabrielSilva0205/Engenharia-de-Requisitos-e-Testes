@@ -74,6 +74,10 @@ public class ValidationService {
         }
     }
 
+    public void recordAuditLog(String action) {
+        addLog(new Date(), action);
+    }
+
     private void addLog(Date timestamp, String action) {
         logs.add(new LogEntry(timestamp, action));
     }

@@ -13,12 +13,14 @@ Esta versão acrescenta uma aplicação web simples com Spring Boot e Thymeleaf,
 - Histórico de validações aprovadas com `beneficiaryId`, `beneficiaryName`, `status` e `timestamp`.
 - Logs de auditoria com `timestamp` e `action`.
 - Página de testes e qualidade com resumo de JUnit, Cucumber e `lab13.feature`.
+- Login simples por sessão HTTP para demonstração académica de Account management and security.
+- Controlo de acesso: visitantes podem consultar páginas públicas, mas apenas utilizadores autenticados podem criar ou validar beneficiários.
 
 ## Requisitos implementados em destaque
 
 - **REQ-016 — Validação institucional de beneficiários**: valida beneficiários existentes e rejeita beneficiários inexistentes ou com nome inválido.
 - **REQ-017 — Histórico de validações**: guarda registos das validações aprovadas durante a execução da aplicação.
-- **REQ-018 — Logs de auditoria**: guarda logs de sucesso e falha das validações executadas.
+- **REQ-018 — Logs de auditoria**: guarda logs de sucesso e falha das validações executadas, autenticação, logout, criação de beneficiários e tentativas bloqueadas.
 
 ## Como correr o site
 
@@ -44,13 +46,61 @@ Rotas disponíveis:
 - `GET /history`
 - `GET /logs`
 - `GET /tests`
+- `GET /login`
+- `POST /login`
+- `GET /logout`
+- `GET /profile`
+
+## Login e controlo de acesso
+
+A autenticação é simples, em memória e por sessão HTTP, adequada para demonstração académica. Não há base de dados de utilizadores.
+
+Credenciais de demonstração:
+
+| Papel | Email | Password | Role |
+| --- | --- | --- | --- |
+| Administrador Cruz Vermelha | `admin@ecodoar.pt` | `admin123` | `RED_CROSS_ADMIN` |
+| Doador demo | `donor@ecodoar.pt` | `donor123` | `DONOR` |
+
+Visitantes não autenticados podem ver:
+
+- `/`
+- `/beneficiaries`
+- `/validation`
+- `/history`
+- `/logs`
+- `/tests`
+- `/login`
+
+Visitantes não autenticados não podem executar ações protegidas:
+
+- `POST /beneficiaries`
+- `POST /validation`
+
+Quando um visitante tenta executar uma ação protegida, é redirecionado para `/login` com a mensagem `É necessário iniciar sessão para realizar esta ação.`.
+
+Utilizadores autenticados podem:
+
+- criar beneficiários;
+- validar beneficiários;
+- aceder ao perfil em `/profile`;
+- terminar sessão em `/logout`.
+
+Para testar manualmente:
+
+1. Abrir `http://localhost:8080/beneficiaries` sem login e confirmar que a lista aparece, mas o formulário mostra `Inicie sessão para criar beneficiários.`.
+2. Abrir `http://localhost:8080/validation` sem login e confirmar que o formulário de validação não aparece.
+3. Entrar em `http://localhost:8080/login` com `admin@ecodoar.pt` / `admin123`.
+4. Voltar a `/beneficiaries` e criar um beneficiário com `id` novo.
+5. Voltar a `/validation`, validar esse `id` e confirmar a mensagem de sucesso.
+6. Consultar `/logs` para ver login, criação, validação e logout registados.
 
 ## Como correr os testes
 
 Executar todos os testes JUnit e Cucumber configurados:
 
 ```bash
-mvn test
+mvn clean test
 ```
 
 Executar especificamente a feature BDD do Lab 13:
@@ -80,6 +130,8 @@ mvn -Dtest=RunLab13CucumberTest test
 │   ├── ValidationService.java
 │   ├── ValidationRecord.java
 │   ├── LogEntry.java
+│   ├── User.java
+│   ├── AuthenticationService.java
 │   ├── EcoDoarApplication.java       # Spring Boot
 │   ├── EcoDoarWebController.java
 │   ├── main/resources/
@@ -89,7 +141,9 @@ mvn -Dtest=RunLab13CucumberTest test
 │   │   │   ├── validation.html
 │   │   │   ├── history.html
 │   │   │   ├── logs.html
-│   │   │   └── tests.html
+│   │   │   ├── tests.html
+│   │   │   ├── login.html
+│   │   │   └── profile.html
 │   │   └── static/css/style.css
 │   └── test/
 │       ├── java/
@@ -100,10 +154,11 @@ mvn -Dtest=RunLab13CucumberTest test
 ## Organização técnica
 
 - `EcoDoarApplication` inicia a aplicação Spring Boot e expõe um `ValidationService` configurado para `data/beneficiaries.json`.
-- `EcoDoarWebController` concentra as rotas web e delega as regras de negócio para `ValidationService` e `BeneficiaryRepository`.
+- `EcoDoarWebController` concentra as rotas web, gere sessão HTTP para login/logout e delega regras de negócio para `ValidationService`, `AuthenticationService` e `BeneficiaryRepository`.
 - As páginas HTML ficam em `src/main/resources/templates` e usam Thymeleaf.
 - O design visual fica em `src/main/resources/static/css/style.css`.
 - As classes de domínio e serviço originais foram preservadas, com visibilidade pública e pacote `ecodoar` para permitir acesso seguro pelo Spring Boot/Thymeleaf e evitar o uso do pacote Java padrão.
+- `AuthenticationService` contém os utilizadores de demonstração e valida credenciais em memória.
 
 ## Rastreabilidade e qualidade
 

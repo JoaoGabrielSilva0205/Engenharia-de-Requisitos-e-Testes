@@ -3,26 +3,91 @@ package ecodoar;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
 public class EcoDoarWebController {
 
-    private final ValidationService validationService;
+    private static final String LOGIN_REQUIRED_MESSAGE = "É necessário iniciar sessão para realizar esta ação.";
 
-    public EcoDoarWebController(ValidationService validationService) {
+    private final ValidationService validationService;
+    private final AuthenticationService authenticationService;
+
+    public EcoDoarWebController(ValidationService validationService, AuthenticationService authenticationService) {
         this.validationService = validationService;
+        this.authenticationService = authenticationService;
+    }
+
+    @ModelAttribute("currentUser")
+    public User currentUser(HttpSession session) {
+        return getAuthenticatedUser(session);
+    }
+
+    @ModelAttribute("isAuthenticated")
+    public boolean isAuthenticated(HttpSession session) {
+        return getAuthenticatedUser(session) != null;
     }
 
     @GetMapping("/")
     public String home() {
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String email,
+                        @RequestParam String password,
+                        HttpSession session,
+                        RedirectAttributes redirectAttributes) {
+        Optional<User> authenticatedUser = authenticationService.authenticate(email, password);
+
+        if (authenticatedUser.isPresent()) {
+            User user = authenticatedUser.get();
+            session.setAttribute(AuthenticationService.SESSION_USER_KEY, user);
+            validationService.recordAuditLog("Login success: " + user.getEmail() + " (" + user.getRole() + ")");
+            redirectAttributes.addFlashAttribute("successMessage", "Sessão iniciada com sucesso.");
+            return "redirect:/";
+        }
+
+        validationService.recordAuditLog("Login failed: " + email);
+        redirectAttributes.addFlashAttribute("errorMessage", "Email ou password inválidos.");
+        return "redirect:/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+        User user = getAuthenticatedUser(session);
+
+        if (user != null) {
+            validationService.recordAuditLog("Logout: " + user.getEmail());
+        }
+
+        session.invalidate();
+        redirectAttributes.addFlashAttribute("successMessage", "Sessão terminada com sucesso.");
+        return "redirect:/";
+    }
+
+    @GetMapping("/profile")
+    public String profile(HttpSession session, RedirectAttributes redirectAttributes) {
+        if (!isAuthenticated(session)) {
+            redirectAttributes.addFlashAttribute("errorMessage", LOGIN_REQUIRED_MESSAGE);
+            return "redirect:/login";
+        }
+
+        return "profile";
     }
 
     @GetMapping("/beneficiaries")
@@ -34,7 +99,14 @@ public class EcoDoarWebController {
     @PostMapping("/beneficiaries")
     public String createBeneficiary(@RequestParam String id,
                                     @RequestParam(defaultValue = "") String name,
+                                    HttpSession session,
                                     RedirectAttributes redirectAttributes) {
+        if (!isAuthenticated(session)) {
+            validationService.recordAuditLog("Beneficiary creation blocked: unauthenticated user");
+            redirectAttributes.addFlashAttribute("errorMessage", LOGIN_REQUIRED_MESSAGE);
+            return "redirect:/login";
+        }
+
         Integer parsedId = parseId(id);
 
         if (parsedId == null) {
@@ -45,8 +117,10 @@ public class EcoDoarWebController {
         boolean created = validationService.createBeneficiary(new Beneficiary(parsedId, name));
 
         if (created) {
+            validationService.recordAuditLog("Beneficiary created: id=" + parsedId + ", name=" + name);
             redirectAttributes.addFlashAttribute("successMessage", "Beneficiário criado com sucesso.");
         } else {
+            validationService.recordAuditLog("Beneficiary creation failed: duplicate id=" + parsedId);
             redirectAttributes.addFlashAttribute("errorMessage", "Já existe um beneficiário com este id. O id deve ser único.");
         }
 
@@ -60,10 +134,18 @@ public class EcoDoarWebController {
 
     @PostMapping("/validation")
     public String validateBeneficiary(@RequestParam String id,
+                                      HttpSession session,
                                       RedirectAttributes redirectAttributes) {
+        if (!isAuthenticated(session)) {
+            validationService.recordAuditLog("Beneficiary validation blocked: unauthenticated user");
+            redirectAttributes.addFlashAttribute("errorMessage", LOGIN_REQUIRED_MESSAGE);
+            return "redirect:/login";
+        }
+
         Integer parsedId = parseId(id);
 
         if (parsedId == null) {
+            validationService.recordAuditLog("Validation failed: invalid id input=" + id);
             redirectAttributes.addFlashAttribute("errorMessage", "O id deve ser um número inteiro válido.");
             return "redirect:/validation";
         }
@@ -109,6 +191,16 @@ public class EcoDoarWebController {
             .stream()
             .sorted(Comparator.comparingInt(Beneficiary::getId))
             .collect(Collectors.toList());
+    }
+
+    private User getAuthenticatedUser(HttpSession session) {
+        Object user = session.getAttribute(AuthenticationService.SESSION_USER_KEY);
+
+        if (user instanceof User) {
+            return (User) user;
+        }
+
+        return null;
     }
 
     private Integer parseId(String value) {

@@ -16,6 +16,9 @@
             <a th:href="@{/history}">Histórico</a>
             <a th:href="@{/logs}">Logs</a>
             <a th:href="@{/tests}">Testes</a>
+            <a th:if="${isAuthenticated}" th:href="@{/profile}" th:text="${currentUser.displayName}">Perfil</a>
+            <a th:if="${isAuthenticated}" th:href="@{/logout}">Sair</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/login}">Entrar</a>
         </div>
     </nav>
 </header>
@@ -52,15 +55,23 @@
 
     <aside class="card form-card">
         <h2>Criar beneficiário</h2>
-        <form th:action="@{/beneficiaries}" method="post" class="stacked-form">
-            <label for="id">id</label>
-            <input id="id" name="id" type="number" step="1" placeholder="Ex.: 10" required>
+        <div th:if="${isAuthenticated}">
+            <p>Utilizador autenticado pode criar beneficiários. O id continua a ser único.</p>
+            <form th:action="@{/beneficiaries}" method="post" class="stacked-form">
+                <label for="id">id</label>
+                <input id="id" name="id" type="number" step="1" placeholder="Ex.: 10" required>
 
-            <label for="name">name</label>
-            <input id="name" name="name" type="text" placeholder="Ex.: Associação Verde">
+                <label for="name">name</label>
+                <input id="name" name="name" type="text" placeholder="Ex.: Associação Verde">
 
-            <button class="button primary" type="submit">Criar beneficiário</button>
-        </form>
+                <button class="button primary" type="submit">Criar beneficiário</button>
+            </form>
+        </div>
+        <div th:unless="${isAuthenticated}" class="locked-panel">
+            <p><strong>Inicie sessão para criar beneficiários.</strong></p>
+            <p>Visitantes podem consultar a lista, mas alterações exigem autenticação.</p>
+            <a class="button primary" th:href="@{/login}">Iniciar sessão</a>
+        </div>
     </aside>
 </main>
 </body>

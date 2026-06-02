@@ -15,4 +15,9 @@ public class EcoDoarApplication {
     public ValidationService validationService() {
         return new ValidationService(new BeneficiaryRepository("data/beneficiaries.json"));
     }
+
+    @Bean
+    public AuthenticationService authenticationService() {
+        return new AuthenticationService();
+    }
 }
