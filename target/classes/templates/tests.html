@@ -18,6 +18,10 @@
             <a class="active" th:href="@{/tests}">Testes</a>
             <a th:if="${isAuthenticated}" th:href="@{/profile}" th:text="${currentUser.displayName}">Perfil</a>
             <a th:if="${isAuthenticated}" th:href="@{/logout}">Sair</a>
+<<<<<<< HEAD
+=======
+            <a th:unless="${isAuthenticated}" th:href="@{/register}">Registar</a>
+>>>>>>> origin/codex/create-web-interface-for-ecodoar-project-hgakwo
             <a th:unless="${isAuthenticated}" th:href="@{/login}">Entrar</a>
         </div>
     </nav>

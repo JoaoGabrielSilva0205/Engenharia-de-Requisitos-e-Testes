@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: ecodoar.EcoDoarWebControllerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.106 s -- in ecodoar.EcoDoarWebControllerTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.369 s -- in ecodoar.EcoDoarWebControllerTest

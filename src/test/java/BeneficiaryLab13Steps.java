@@ -31,24 +31,10 @@ public class BeneficiaryLab13Steps {
     }
 
     @Given("que existe um beneficiário com nome {string} e id {int}")
-<<<<<<< HEAD
-=======
-    @When("que existe um beneficiário com nome {string} e id {int}")
->>>>>>> origin/codex/create-web-interface-for-ecodoar-project-hgakwo
     public void que_existe_um_beneficiario_com_nome_e_id(String nome, Integer id) {
         existe_um_beneficiario_com_id_e_nome(id, nome);
-        validationResult = service.validateBeneficiaryById(id);
     }
 
-    @Given("que existe um beneficiário com nome {string}")
-    public void que_existe_um_beneficiario_com_nome(String nome) {
-        existe_um_beneficiario_com_id_e_nome(1, nome);
-    }
-
-<<<<<<< HEAD
-=======
-    @Given("a validação do beneficiário é executada")
->>>>>>> origin/codex/create-web-interface-for-ecodoar-project-hgakwo
     @When("a validação do beneficiário é executada")
     public void a_validacao_do_beneficiario_e_executada() {
         ensureService();
@@ -71,13 +57,17 @@ public class BeneficiaryLab13Steps {
         creationResult = service.createBeneficiary(beneficiary);
     }
 
-    @Then("a validação deve ser concluída com sucesso")
-    public void a_validacao_deve_ser_concluida_com_sucesso() {
+    @Then("o beneficiário deve ficar validado")
+    public void o_beneficiario_deve_ficar_validado() {
+        if (!validationResult && currentBeneficiaryId != null) {
+            validationResult = service.validateBeneficiaryById(currentBeneficiaryId);
+        }
+
         assertTrue(validationResult);
     }
 
-    @Then("o beneficiário deve ficar validado")
-    public void o_beneficiario_deve_ficar_validado() {
+    @Then("a validação deve ser concluída com sucesso")
+    public void a_validacao_deve_ser_concluida_com_sucesso() {
         assertTrue(validationResult);
     }
 
@@ -112,11 +102,26 @@ public class BeneficiaryLab13Steps {
     }
 
     private void ensureService() {
-        if (service == null) {
-            repository = new BeneficiaryRepository("data/test-bdd-beneficiaries.json");
+        if (repository == null) {
+            repository = new BeneficiaryRepository("data/beneficiaries.json");
             repository.clear();
+        }
+
+        if (service == null) {
             service = new ValidationService(repository);
-            currentBeneficiaryId = null;
         }
     }
+    @Given("que existe um beneficiário com nome {string}")
+    public void que_existe_um_beneficiario_com_nome(String nome) {
+        repository = new BeneficiaryRepository("data/beneficiaries.json");
+        repository.clear();
+        service = new ValidationService(repository);
+
+        int id = nome == null || nome.trim().isEmpty() ? 2 : 1;
+
+        Beneficiary beneficiary = new Beneficiary(id, nome);
+        service.createBeneficiary(beneficiary);
+        currentBeneficiaryId = id;
+    }
+
 }
