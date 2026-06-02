@@ -31,6 +31,10 @@ public class BeneficiaryLab13Steps {
     }
 
     @Given("que existe um beneficiário com nome {string} e id {int}")
+<<<<<<< HEAD
+=======
+    @When("que existe um beneficiário com nome {string} e id {int}")
+>>>>>>> origin/codex/create-web-interface-for-ecodoar-project-hgakwo
     public void que_existe_um_beneficiario_com_nome_e_id(String nome, Integer id) {
         existe_um_beneficiario_com_id_e_nome(id, nome);
         validationResult = service.validateBeneficiaryById(id);
@@ -41,6 +45,10 @@ public class BeneficiaryLab13Steps {
         existe_um_beneficiario_com_id_e_nome(1, nome);
     }
 
+<<<<<<< HEAD
+=======
+    @Given("a validação do beneficiário é executada")
+>>>>>>> origin/codex/create-web-interface-for-ecodoar-project-hgakwo
     @When("a validação do beneficiário é executada")
     public void a_validacao_do_beneficiario_e_executada() {
         ensureService();

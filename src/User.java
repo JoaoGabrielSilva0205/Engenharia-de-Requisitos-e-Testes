@@ -8,10 +8,10 @@ public class User {
     private final String displayName;
 
     public User(String email, String password, String role, String displayName) {
-        this.email = email;
+        this.email = AuthenticationService.normalizeEmail(email);
         this.password = password;
         this.role = role;
-        this.displayName = displayName;
+        this.displayName = displayName == null ? "" : displayName.trim();
     }
 
     public String getEmail() {

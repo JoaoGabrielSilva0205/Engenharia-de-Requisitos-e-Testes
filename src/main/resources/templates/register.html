@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDoar | Registo</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">EcoDoar</a>
+        <div class="nav-links">
+            <a th:href="@{/beneficiaries}">Beneficiários</a>
+            <a th:href="@{/validation}">Validação</a>
+            <a th:href="@{/history}">Histórico</a>
+            <a th:href="@{/logs}">Logs</a>
+            <a th:href="@{/tests}">Testes</a>
+            <a class="active" th:href="@{/register}">Registar</a>
+            <a th:href="@{/login}">Entrar</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container narrow">
+    <section class="card">
+        <span class="eyebrow">Account management</span>
+        <h1>Registar utilizador</h1>
+        <p>Crie uma conta simples em memória para demonstrar gestão de contas. O registo não valida beneficiários automaticamente.</p>
+
+        <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+        <div class="alert error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
+        <form th:action="@{/register}" method="post" class="stacked-form">
+            <label for="displayName">nome</label>
+            <input id="displayName" name="displayName" type="text" placeholder="Ex.: Maria Silva" required>
+
+            <label for="email">email</label>
+            <input id="email" name="email" type="email" placeholder="maria@example.com" required>
+
+            <label for="password">password</label>
+            <input id="password" name="password" type="password" placeholder="Escolha uma password" required>
+
+            <label for="role">role</label>
+            <select id="role" name="role" required>
+                <option value="DONOR">DONOR</option>
+                <option value="BENEFICIARY">BENEFICIARY</option>
+            </select>
+
+            <button class="button primary" type="submit">Criar utilizador</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

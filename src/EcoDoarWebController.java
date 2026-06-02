@@ -67,6 +67,43 @@ public class EcoDoarWebController {
         return "redirect:/login";
     }
 
+    @GetMapping("/register")
+    public String register() {
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String register(@RequestParam(defaultValue = "") String displayName,
+                           @RequestParam(defaultValue = "") String email,
+                           @RequestParam(defaultValue = "") String password,
+                           @RequestParam(defaultValue = "") String role,
+                           RedirectAttributes redirectAttributes) {
+        String normalizedEmail = AuthenticationService.normalizeEmail(email);
+        String normalizedRole = role.trim().toUpperCase();
+
+        if (isBlank(displayName) || isBlank(normalizedEmail) || isBlank(password)) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Nome, email e password são obrigatórios.");
+            return "redirect:/register";
+        }
+
+        if (!isAllowedRegistrationRole(normalizedRole)) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Role inválido para registo. Escolha DONOR ou BENEFICIARY.");
+            return "redirect:/register";
+        }
+
+        if (authenticationService.emailExists(normalizedEmail)) {
+            validationService.recordAuditLog("User registration failed: duplicate email " + normalizedEmail);
+            redirectAttributes.addFlashAttribute("errorMessage", "Já existe um utilizador com este email.");
+            return "redirect:/register";
+        }
+
+        User user = new User(normalizedEmail, password, normalizedRole, displayName);
+        authenticationService.register(user);
+        validationService.recordAuditLog("User registration success: " + user.getEmail());
+        redirectAttributes.addFlashAttribute("successMessage", "Utilizador registado com sucesso. Pode iniciar sessão.");
+        return "redirect:/login";
+    }
+
     @GetMapping("/logout")
     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
         User user = getAuthenticatedUser(session);
@@ -201,6 +238,14 @@ public class EcoDoarWebController {
         }
 
         return null;
+    }
+
+    private boolean isAllowedRegistrationRole(String role) {
+        return "DONOR".equals(role) || "BENEFICIARY".equals(role);
+    }
+
+    private boolean isBlank(String value) {
+        return value == null || value.trim().isEmpty();
     }
 
     private Integer parseId(String value) {

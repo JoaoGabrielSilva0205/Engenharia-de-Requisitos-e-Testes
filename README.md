@@ -14,6 +14,7 @@ Esta versão acrescenta uma aplicação web simples com Spring Boot e Thymeleaf,
 - Logs de auditoria com `timestamp` e `action`.
 - Página de testes e qualidade com resumo de JUnit, Cucumber e `lab13.feature`.
 - Login simples por sessão HTTP para demonstração académica de Account management and security.
+- Registo simples de novos utilizadores em memória, com roles `DONOR` ou `BENEFICIARY`.
 - Controlo de acesso: visitantes podem consultar páginas públicas, mas apenas utilizadores autenticados podem criar ou validar beneficiários.
 
 ## Requisitos implementados em destaque
@@ -48,6 +49,8 @@ Rotas disponíveis:
 - `GET /tests`
 - `GET /login`
 - `POST /login`
+- `GET /register`
+- `POST /register`
 - `GET /logout`
 - `GET /profile`
 
@@ -62,6 +65,13 @@ Credenciais de demonstração:
 | Administrador Cruz Vermelha | `admin@ecodoar.pt` | `admin123` | `RED_CROSS_ADMIN` |
 | Doador demo | `donor@ecodoar.pt` | `donor123` | `DONOR` |
 
+Também é possível criar novos utilizadores em `/register`. O registo é mantido em memória durante a execução da aplicação e não valida automaticamente um beneficiário.
+
+Roles disponíveis para novos registos:
+
+- `DONOR`
+- `BENEFICIARY`
+
 Visitantes não autenticados podem ver:
 
 - `/`
@@ -71,6 +81,7 @@ Visitantes não autenticados podem ver:
 - `/logs`
 - `/tests`
 - `/login`
+- `/register`
 
 Visitantes não autenticados não podem executar ações protegidas:
 
@@ -88,12 +99,13 @@ Utilizadores autenticados podem:
 
 Para testar manualmente:
 
-1. Abrir `http://localhost:8080/beneficiaries` sem login e confirmar que a lista aparece, mas o formulário mostra `Inicie sessão para criar beneficiários.`.
-2. Abrir `http://localhost:8080/validation` sem login e confirmar que o formulário de validação não aparece.
-3. Entrar em `http://localhost:8080/login` com `admin@ecodoar.pt` / `admin123`.
-4. Voltar a `/beneficiaries` e criar um beneficiário com `id` novo.
-5. Voltar a `/validation`, validar esse `id` e confirmar a mensagem de sucesso.
-6. Consultar `/logs` para ver login, criação, validação e logout registados.
+1. Abrir `http://localhost:8080/register`, criar um utilizador com role `DONOR` ou `BENEFICIARY` e confirmar que volta para `/login` com mensagem de sucesso.
+2. Entrar em `http://localhost:8080/login` com `admin@ecodoar.pt` / `admin123`, `donor@ecodoar.pt` / `donor123` ou com a conta criada.
+3. Abrir `http://localhost:8080/beneficiaries` sem login e confirmar que a lista aparece, mas o formulário mostra `Inicie sessão para criar beneficiários.`.
+4. Abrir `http://localhost:8080/validation` sem login e confirmar que o formulário de validação não aparece.
+5. Com sessão iniciada, voltar a `/beneficiaries` e criar um beneficiário com `id` novo.
+6. Voltar a `/validation`, validar esse `id` e confirmar a mensagem de sucesso.
+7. Consultar `/logs` para ver registo, login, criação, validação e logout registados.
 
 ## Como correr os testes
 
@@ -143,6 +155,7 @@ mvn -Dtest=RunLab13CucumberTest test
 │   │   │   ├── logs.html
 │   │   │   ├── tests.html
 │   │   │   ├── login.html
+│   │   │   ├── register.html
 │   │   │   └── profile.html
 │   │   └── static/css/style.css
 │   └── test/
@@ -158,7 +171,7 @@ mvn -Dtest=RunLab13CucumberTest test
 - As páginas HTML ficam em `src/main/resources/templates` e usam Thymeleaf.
 - O design visual fica em `src/main/resources/static/css/style.css`.
 - As classes de domínio e serviço originais foram preservadas, com visibilidade pública e pacote `ecodoar` para permitir acesso seguro pelo Spring Boot/Thymeleaf e evitar o uso do pacote Java padrão.
-- `AuthenticationService` contém os utilizadores de demonstração e valida credenciais em memória.
+- `AuthenticationService` contém os utilizadores de demonstração, valida credenciais em memória e permite registar novos utilizadores durante a execução.
 
 ## Rastreabilidade e qualidade
 

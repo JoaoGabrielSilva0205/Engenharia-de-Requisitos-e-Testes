@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class EcoDoarWebControllerTest {
 
     private ValidationService validationService;
+    private AuthenticationService authenticationService;
     private MockMvc mockMvc;
 
     @BeforeEach
@@ -27,9 +29,64 @@ public class EcoDoarWebControllerTest {
         }
 
         validationService = new ValidationService(new BeneficiaryRepository(path));
+        authenticationService = new AuthenticationService();
         mockMvc = MockMvcBuilders
-            .standaloneSetup(new EcoDoarWebController(validationService, new AuthenticationService()))
+            .standaloneSetup(new EcoDoarWebController(validationService, authenticationService))
             .build();
+    }
+
+    @Test
+    void shouldLoginAdminAndStoreUserInSession() throws Exception {
+        MvcResult result = mockMvc.perform(post("/login")
+                .param("email", " admin@ecodoar.pt ")
+                .param("password", "admin123"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/"))
+            .andReturn();
+
+        Object user = result.getRequest().getSession().getAttribute(AuthenticationService.SESSION_USER_KEY);
+        assertTrue(user instanceof User);
+        assertEquals("admin@ecodoar.pt", ((User) user).getEmail());
+    }
+
+    @Test
+    void shouldRejectInvalidLogin() throws Exception {
+        mockMvc.perform(post("/login")
+                .param("email", "admin@ecodoar.pt")
+                .param("password", "wrong"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/login"));
+
+        assertEquals(1, validationService.getLogs().size());
+        assertTrue(validationService.getLogs().get(0).getAction().contains("Login failed"));
+    }
+
+    @Test
+    void shouldRegisterNewUserAndRedirectToLogin() throws Exception {
+        mockMvc.perform(post("/register")
+                .param("displayName", "Nova Pessoa")
+                .param("email", "nova@ecodoar.pt")
+                .param("password", "nova123")
+                .param("role", "DONOR"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/login"));
+
+        assertTrue(authenticationService.emailExists("nova@ecodoar.pt"));
+        assertTrue(authenticationService.authenticate("nova@ecodoar.pt", "nova123").isPresent());
+    }
+
+    @Test
+    void shouldRejectDuplicateUserRegistration() throws Exception {
+        mockMvc.perform(post("/register")
+                .param("displayName", "Duplicado")
+                .param("email", "admin@ecodoar.pt")
+                .param("password", "admin123")
+                .param("role", "DONOR"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/register"));
+
+        assertEquals(1, validationService.getLogs().size());
+        assertTrue(validationService.getLogs().get(0).getAction().contains("duplicate email"));
     }
 
     @Test
