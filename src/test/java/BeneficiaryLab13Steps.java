@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BeneficiaryLab13Steps {
 
+    private static final String TEST_FILE = "data/cucumber-test-beneficiaries.json";
+
     private ValidationService service;
     private BeneficiaryRepository repository;
     private boolean validationResult;
@@ -16,15 +18,25 @@ public class BeneficiaryLab13Steps {
 
     @Given("que o repositório de beneficiários está vazio")
     public void que_o_repositorio_de_beneficiarios_esta_vazio() {
-        repository = new BeneficiaryRepository("data/beneficiaries.json");
-        repository.clear();
-        service = new ValidationService(repository);
-        currentBeneficiaryId = null;
+        resetTestRepository();
+    }
+
+    @Given("que existe um beneficiário com nome {string}")
+    public void que_existe_um_beneficiario_com_nome(String nome) {
+        resetTestRepository();
+
+        currentBeneficiaryId = nome == null || nome.trim().isEmpty() ? 200 : 100;
+
+        Beneficiary beneficiary = new Beneficiary(currentBeneficiaryId, nome);
+        creationResult = service.createBeneficiary(beneficiary);
+
+        assertTrue(creationResult, "O beneficiário de teste deve ser criado antes da validação.");
     }
 
     @Given("existe um beneficiário com id {int} e nome {string}")
     public void existe_um_beneficiario_com_id_e_nome(Integer id, String nome) {
         ensureService();
+
         Beneficiary beneficiary = new Beneficiary(id, nome);
         creationResult = service.createBeneficiary(beneficiary);
         currentBeneficiaryId = id;
@@ -39,30 +51,28 @@ public class BeneficiaryLab13Steps {
     public void a_validacao_do_beneficiario_e_executada() {
         ensureService();
 
-        if (currentBeneficiaryId != null) {
-            validationResult = service.validateBeneficiaryById(currentBeneficiaryId);
-        }
+        assertNotNull(currentBeneficiaryId, "O beneficiário deve existir antes da validação.");
+
+        validationResult = service.validateBeneficiaryById(currentBeneficiaryId);
     }
 
     @When("a validação do beneficiário com id {int} é executada")
     public void a_validacao_do_beneficiario_com_id_e_executada(Integer id) {
         ensureService();
+
         validationResult = service.validateBeneficiaryById(id);
     }
 
     @When("tento criar outro beneficiário com id {int} e nome {string}")
     public void tento_criar_outro_beneficiario_com_id_e_nome(Integer id, String nome) {
         ensureService();
+
         Beneficiary beneficiary = new Beneficiary(id, nome);
         creationResult = service.createBeneficiary(beneficiary);
     }
 
     @Then("o beneficiário deve ficar validado")
     public void o_beneficiario_deve_ficar_validado() {
-        if (!validationResult && currentBeneficiaryId != null) {
-            validationResult = service.validateBeneficiaryById(currentBeneficiaryId);
-        }
-
         assertTrue(validationResult);
     }
 
@@ -101,27 +111,19 @@ public class BeneficiaryLab13Steps {
         assertEquals(quantidade, repository.findAll().size());
     }
 
-    private void ensureService() {
-        if (repository == null) {
-            repository = new BeneficiaryRepository("data/beneficiaries.json");
-            repository.clear();
-        }
-
-        if (service == null) {
-            service = new ValidationService(repository);
-        }
-    }
-    @Given("que existe um beneficiário com nome {string}")
-    public void que_existe_um_beneficiario_com_nome(String nome) {
-        repository = new BeneficiaryRepository("data/beneficiaries.json");
+    private void resetTestRepository() {
+        repository = new BeneficiaryRepository(TEST_FILE);
         repository.clear();
+
         service = new ValidationService(repository);
-
-        int id = nome == null || nome.trim().isEmpty() ? 2 : 1;
-
-        Beneficiary beneficiary = new Beneficiary(id, nome);
-        service.createBeneficiary(beneficiary);
-        currentBeneficiaryId = id;
+        validationResult = false;
+        creationResult = false;
+        currentBeneficiaryId = null;
     }
 
+    private void ensureService() {
+        if (repository == null || service == null) {
+            resetTestRepository();
+        }
+    }
 }

@@ -5,14 +5,17 @@ Feature: Beneficiary Validation
   # REQ links: REQ-016, REQ-017, REQ-018
 
   Scenario: Happy path — validar beneficiário com nome válido
-    Given a validação do beneficiário é executada
-    When que existe um beneficiário com nome "Pedrinho" e id 1
+    Given que o repositório de beneficiários está vazio
+    And existe um beneficiário com id 1 e nome "Pedrinho"
+    When a validação do beneficiário com id 1 é executada
     Then o beneficiário deve ficar validado
     And o histórico deve conter 1 registo
     And os logs devem conter 1 entrada
 
   Scenario: Negative path — rejeitar beneficiário sem nome
-    Given que existe um beneficiário com nome ""
-    When a validação do beneficiário é executada
+    Given que o repositório de beneficiários está vazio
+    And existe um beneficiário com id 2 e nome ""
+    When a validação do beneficiário com id 2 é executada
     Then a validação deve falhar
+    And o histórico deve conter 0 registos
     And os logs devem conter 1 entrada
