@@ -1,8 +1,10 @@
+package ecodoar;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class ValidationService {
+public class ValidationService {
 
     private List<ValidationRecord> history = new ArrayList<>();
     private List<LogEntry> logs = new ArrayList<>();
@@ -72,9 +74,14 @@ class ValidationService {
         }
     }
 
+    public void recordAuditLog(String action) {
+        addLog(new Date(), action);
+    }
+
     private void addLog(Date timestamp, String action) {
         logs.add(new LogEntry(timestamp, action));
     }
+
     public BeneficiaryRepository getRepository() {
         return repository;
     }

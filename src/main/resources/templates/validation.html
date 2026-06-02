@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDoar | Validação</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">EcoDoar</a>
+        <div class="nav-links">
+            <a th:href="@{/beneficiaries}">Beneficiários</a>
+            <a class="active" th:href="@{/validation}">Validação</a>
+            <a th:href="@{/history}">Histórico</a>
+            <a th:href="@{/logs}">Logs</a>
+            <a th:href="@{/tests}">Testes</a>
+            <a th:if="${isAuthenticated}" th:href="@{/profile}" th:text="${currentUser.displayName}">Perfil</a>
+            <a th:if="${isAuthenticated}" th:href="@{/logout}">Sair</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/register}">Registar</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/login}">Entrar</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container narrow">
+    <section class="card">
+        <span class="eyebrow">REQ-016 / UC03</span>
+        <h1>Validação de beneficiário</h1>
+        <p>A Cruz Vermelha valida beneficiários existentes e aprova apenas registos com nome válido.</p>
+
+        <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+        <div class="alert error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
+        <form th:if="${isAuthenticated}" th:action="@{/validation}" method="post" class="stacked-form">
+            <label for="id">id do beneficiário</label>
+            <input id="id" name="id" type="number" step="1" placeholder="Ex.: 1" required>
+            <button class="button primary" type="submit">Executar validação</button>
+        </form>
+
+        <div th:unless="${isAuthenticated}" class="locked-panel">
+            <p><strong>Inicie sessão para validar beneficiários.</strong></p>
+            <p>Visitantes podem consultar esta página, mas a validação é uma ação protegida.</p>
+            <a class="button primary" th:href="@{/login}">Iniciar sessão</a>
+        </div>
+    </section>
+</main>
+</body>
+</html>

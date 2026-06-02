@@ -1,4 +1,6 @@
-class Beneficiary {
+package ecodoar;
+
+public class Beneficiary {
 
     private int id;
     private String name;

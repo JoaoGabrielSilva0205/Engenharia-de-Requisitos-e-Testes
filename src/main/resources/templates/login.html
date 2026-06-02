@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDoar | Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">EcoDoar</a>
+        <div class="nav-links">
+            <a th:href="@{/beneficiaries}">Beneficiários</a>
+            <a th:href="@{/validation}">Validação</a>
+            <a th:href="@{/history}">Histórico</a>
+            <a th:href="@{/logs}">Logs</a>
+            <a th:href="@{/tests}">Testes</a>
+            <a th:href="@{/register}">Registar</a>
+            <a class="active" th:href="@{/login}">Entrar</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container narrow">
+    <section class="card">
+        <span class="eyebrow">UC04 — Authenticate User</span>
+        <h1>Iniciar sessão</h1>
+        <p>Use as credenciais de demonstração ou uma conta registada durante esta execução.</p>
+
+        <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+        <div class="alert error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
+        <form th:action="@{/login}" method="post" class="stacked-form">
+            <label for="email">email</label>
+            <input id="email" name="email" type="email" placeholder="admin@ecodoar.pt" required>
+
+            <label for="password">password</label>
+            <input id="password" name="password" type="password" placeholder="admin123" required>
+
+            <button class="button primary" type="submit">Entrar</button>
+        </form>
+
+        <p class="form-help">Ainda não tem conta? <a class="text-link" th:href="@{/register}">Criar novo utilizador</a>.</p>
+    </section>
+
+    <section class="card">
+        <h2>Credenciais de demonstração</h2>
+        <div class="scenario-list">
+            <div><strong>Red Cross Admin</strong><span>admin@ecodoar.pt / admin123</span></div>
+            <div><strong>Donor</strong><span>donor@ecodoar.pt / donor123</span></div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

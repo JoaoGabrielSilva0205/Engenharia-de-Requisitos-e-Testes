@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoDoar | Testes e Qualidade</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="site-header">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">EcoDoar</a>
+        <div class="nav-links">
+            <a th:href="@{/beneficiaries}">Beneficiários</a>
+            <a th:href="@{/validation}">Validação</a>
+            <a th:href="@{/history}">Histórico</a>
+            <a th:href="@{/logs}">Logs</a>
+            <a class="active" th:href="@{/tests}">Testes</a>
+            <a th:if="${isAuthenticated}" th:href="@{/profile}" th:text="${currentUser.displayName}">Perfil</a>
+            <a th:if="${isAuthenticated}" th:href="@{/logout}">Sair</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/register}">Registar</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/login}">Entrar</a>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="card">
+        <span class="eyebrow">Qualidade e rastreabilidade</span>
+        <h1>Testes do EcoDoar</h1>
+        <p>
+            O projeto mantém testes JUnit para a lógica Java e testes Cucumber para os cenários BDD,
+            incluindo a feature <strong>lab13.feature</strong> e testes de autenticação simples.
+        </p>
+    </section>
+
+    <section class="grid two-columns">
+        <article class="card">
+            <h2>Comandos Maven</h2>
+            <div class="command-list">
+                <code>mvn clean test</code>
+                <code>mvn -Dtest=RunLab13CucumberTest test</code>
+            </div>
+        </article>
+        <article class="card">
+            <h2>Cobertura principal</h2>
+            <ul class="check-list">
+                <li>JUnit — valida criação, validação, histórico, logs e autenticação.</li>
+                <li>Cucumber — executa cenários BDD em português.</li>
+                <li>lab13.feature — liga REQ-016, REQ-017 e REQ-018 aos fluxos de aceitação.</li>
+            </ul>
+        </article>
+    </section>
+
+    <section class="card">
+        <h2>Resumo dos cenários BDD</h2>
+        <div class="scenario-list">
+            <div><strong>Happy path</strong><span>validar beneficiário existente</span></div>
+            <div><strong>Negative path</strong><span>rejeitar beneficiário com nome vazio</span></div>
+            <div><strong>Alternative flow</strong><span>rejeitar id duplicado</span></div>
+            <div><strong>Boundary behavior</strong><span>validar beneficiário com nome de um caractere</span></div>
+        </div>
+    </section>
+</main>
+</body>
+</html>
