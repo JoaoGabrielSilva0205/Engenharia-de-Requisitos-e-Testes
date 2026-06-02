@@ -42,7 +42,7 @@ public class BeneficiaryLab13Steps {
     }
 
     @When("a validação do beneficiário é executada")
-    public void a_validacao_do_beneficiario_e_executada() {
+    public void a_validacao_do_beneficiario_e_executada() { 
         ensureService();
 
         if (currentBeneficiaryId != null) {
