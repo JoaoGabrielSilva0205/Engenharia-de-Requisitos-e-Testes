@@ -16,15 +16,18 @@
             <a th:href="@{/history}">Histórico</a>
             <a class="active" th:href="@{/logs}">Logs</a>
             <a th:href="@{/tests}">Testes</a>
+            <a th:if="${isAuthenticated}" th:href="@{/profile}" th:text="${currentUser.displayName}">Perfil</a>
+            <a th:if="${isAuthenticated}" th:href="@{/logout}">Sair</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/login}">Entrar</a>
         </div>
     </nav>
 </header>
 
 <main class="container">
     <section class="card">
-        <span class="eyebrow">REQ-018</span>
+        <span class="eyebrow">REQ-018 / UC13</span>
         <h1>Logs de auditoria</h1>
-        <p>Eventos de validação registados durante a execução atual da aplicação.</p>
+        <p>Eventos de validação, autenticação, criação e ações bloqueadas durante a execução atual da aplicação.</p>
 
         <div class="table-wrapper">
             <table>

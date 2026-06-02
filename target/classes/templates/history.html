@@ -16,6 +16,9 @@
             <a class="active" th:href="@{/history}">Histórico</a>
             <a th:href="@{/logs}">Logs</a>
             <a th:href="@{/tests}">Testes</a>
+            <a th:if="${isAuthenticated}" th:href="@{/profile}" th:text="${currentUser.displayName}">Perfil</a>
+            <a th:if="${isAuthenticated}" th:href="@{/logout}">Sair</a>
+            <a th:unless="${isAuthenticated}" th:href="@{/login}">Entrar</a>
         </div>
     </nav>
 </header>

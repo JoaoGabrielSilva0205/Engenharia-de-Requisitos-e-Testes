@@ -1,4 +1,6 @@
 ecodoar/RunCucumberTest.class
 ecodoar/ValidationServiceTest.class
+ecodoar/AuthenticationServiceTest.class
+ecodoar/EcoDoarWebControllerTest.class
 ecodoar/RunLab13CucumberTest.class
 ecodoar/BeneficiaryLab13Steps.class

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: ecodoar.RunCucumberTest
+Test set: ecodoar.EcoDoarWebControllerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.271 s -- in ecodoar.RunCucumberTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.106 s -- in ecodoar.EcoDoarWebControllerTest

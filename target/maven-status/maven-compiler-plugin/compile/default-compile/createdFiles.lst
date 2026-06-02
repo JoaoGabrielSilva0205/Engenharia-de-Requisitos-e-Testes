@@ -1,6 +1,8 @@
 ecodoar/ValidationService.class
 ecodoar/LogEntry.class
+ecodoar/User.class
 ecodoar/Main.class
+ecodoar/AuthenticationService.class
 ecodoar/EcoDoarWebController.class
 ecodoar/Beneficiary.class
 ecodoar/ValidationRecord.class
