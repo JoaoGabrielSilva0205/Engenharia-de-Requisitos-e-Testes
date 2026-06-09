@@ -1,207 +1,245 @@
 # EcoDoar — Engenharia de Requisitos e Testes
 
-EcoDoar é um projeto Java/Maven usado na disciplina de Engenharia de Requisitos e Testes para demonstrar requisitos, critérios de aceitação, testes JUnit, cenários BDD com Cucumber e rastreabilidade.
+EcoDoar é um projeto desenvolvido no âmbito da unidade curricular de Engenharia de Requisitos e Testes. O sistema demonstra a aplicação prática de requisitos funcionais e não funcionais, critérios de aceitação, rastreabilidade, testes unitários com JUnit e testes BDD com Cucumber.
 
-Esta versão acrescenta uma aplicação web simples com Spring Boot e Thymeleaf, preservando a lógica Java existente sempre que possível. O repositório de beneficiários continua a usar o ficheiro `data/beneficiaries.json` e a regra de negócio mantém o `id` como identificador único.
+A solução foi implementada em Java utilizando Maven e inclui uma aplicação web baseada em Spring Boot e Thymeleaf para demonstração das funcionalidades principais do sistema.
 
-## Funcionalidades principais
+---
 
-- Página inicial com descrição do sistema, requisitos REQ-016, REQ-017 e REQ-018 e explicação de rastreabilidade.
-- Página de beneficiários para listar dados de `data/beneficiaries.json` e criar novos beneficiários.
-- Bloqueio de criação de beneficiários com `id` duplicado.
-- Página de validação por `id` de beneficiário.
-- Histórico de validações aprovadas com `beneficiaryId`, `beneficiaryName`, `status` e `timestamp`.
-- Logs de auditoria com `timestamp` e `action`.
-- Página de testes e qualidade com resumo de JUnit, Cucumber e `lab13.feature`.
-- Login simples por sessão HTTP para demonstração académica de Account management and security.
-- Registo simples de novos utilizadores em memória, com roles `DONOR` ou `BENEFICIARY`.
-- Controlo de acesso: visitantes podem consultar páginas públicas, mas apenas utilizadores autenticados podem criar ou validar beneficiários.
+# Objetivo do Projeto
 
-## Requisitos implementados em destaque
+O EcoDoar tem como objetivo apoiar a gestão e validação institucional de beneficiários, garantindo controlo de acesso, histórico de validações e registo de auditoria das operações realizadas.
 
-- **REQ-016 — Validação institucional de beneficiários**: valida beneficiários existentes e rejeita beneficiários inexistentes ou com nome inválido.
-- **REQ-017 — Histórico de validações**: guarda registos das validações aprovadas durante a execução da aplicação.
-- **REQ-018 — Logs de auditoria**: guarda logs de sucesso e falha das validações executadas, autenticação, logout, criação de beneficiários e tentativas bloqueadas.
+---
 
-## Como correr o site
+# Funcionalidades Principais
 
-A aplicação web usa Spring Boot 2.7.18, compatível com Java 11.
+- Registo de beneficiários
+- Validação institucional de beneficiários
+- Histórico de validações
+- Logs de auditoria
+- Login e autenticação de utilizadores
+- Registo de novos utilizadores
+- Controlo de acesso baseado em sessão
+- Interface web para demonstração académica
+
+---
+
+# Requisitos Implementados em Destaque
+
+## REQ-016 — Validação Institucional de Beneficiários
+
+- Valida beneficiários existentes
+- Rejeita beneficiários inexistentes
+- Rejeita beneficiários com nome inválido
+
+## REQ-017 — Histórico de Validações
+
+- Regista validações aprovadas
+- Guarda identificador, nome e timestamp
+
+## REQ-018 — Logs de Auditoria
+
+- Regista eventos de validação
+- Regista autenticação e logout
+- Regista criação de beneficiários
+- Regista tentativas inválidas ou bloqueadas
+
+---
+
+# Casos de Uso Implementados
+
+| Use Case | Estado |
+|-----------|---------|
+| UC02 Register Beneficiary | Implementado |
+| UC03 Validate Beneficiary | Implementado |
+| UC04 Authenticate User | Implementado |
+| UC05 Edit Profile | Implementado (versão simplificada) |
+| UC12 Secure Visualization | Implementado |
+| UC13 Audit Log | Implementado |
+
+---
+
+# Tecnologias Utilizadas
+
+- Java 11
+- Maven
+- Spring Boot 2.7.18
+- Thymeleaf
+- JUnit 5
+- Cucumber
+
+---
+
+# Como Executar a Aplicação
+
+Executar:
 
 ```bash
 mvn spring-boot:run
 ```
 
-Depois de iniciar, abrir no navegador:
+Após iniciar, abrir:
 
 ```text
 http://localhost:8080
 ```
 
-Rotas disponíveis:
+---
 
-- `GET /`
-- `GET /beneficiaries`
-- `POST /beneficiaries`
-- `GET /validation`
-- `POST /validation`
-- `GET /history`
-- `GET /logs`
-- `GET /tests`
-- `GET /login`
-- `POST /login`
-- `GET /register`
-- `POST /register`
-- `GET /logout`
-- `GET /profile`
+# Rotas Disponíveis
 
-## Login e controlo de acesso
+- GET /
+- GET /beneficiaries
+- POST /beneficiaries
+- GET /validation
+- POST /validation
+- GET /history
+- GET /logs
+- GET /tests
+- GET /login
+- POST /login
+- GET /register
+- POST /register
+- GET /logout
+- GET /profile
 
-A autenticação é simples, em memória e por sessão HTTP, adequada para demonstração académica. Não há base de dados de utilizadores.
+---
 
-Credenciais de demonstração:
+# Login e Controlo de Acesso
 
-| Papel | Email | Password | Role |
-| --- | --- | --- | --- |
-| Administrador Cruz Vermelha | `admin@ecodoar.pt` | `admin123` | `RED_CROSS_ADMIN` |
-| Doador demo | `donor@ecodoar.pt` | `donor123` | `DONOR` |
+A autenticação é realizada através de sessão HTTP para fins académicos.
 
-Também é possível criar novos utilizadores em `/register`. O registo é mantido em memória durante a execução da aplicação e não valida automaticamente um beneficiário.
+## Credenciais de Demonstração
 
-Roles disponíveis para novos registos:
+| Papel | Email | Password |
+|---------|---------|---------|
+| Administrador Cruz Vermelha | admin@ecodoar.pt | admin123 |
+| Doador Demo | donor@ecodoar.pt | donor123 |
 
-- `DONOR`
-- `BENEFICIARY`
+Também é possível criar novos utilizadores através de:
 
-Visitantes não autenticados podem ver:
+```text
+/register
+```
 
-- `/`
-- `/beneficiaries`
-- `/validation`
-- `/history`
-- `/logs`
-- `/tests`
-- `/login`
-- `/register`
+### Roles Disponíveis
 
-Visitantes não autenticados não podem executar ações protegidas:
+- DONOR
+- BENEFICIARY
 
-- `POST /beneficiaries`
-- `POST /validation`
+### Ações Públicas
 
-Quando um visitante tenta executar uma ação protegida, é redirecionado para `/login` com a mensagem `É necessário iniciar sessão para realizar esta ação.`.
+Visitantes podem consultar:
 
-Utilizadores autenticados podem:
+- Página inicial
+- Beneficiários
+- Validação
+- Histórico
+- Logs
+- Testes
+- Login
+- Registo
 
-- criar beneficiários;
-- validar beneficiários;
-- aceder ao perfil em `/profile`;
-- terminar sessão em `/logout`.
+### Ações Protegidas
 
-Para testar manualmente:
+Apenas utilizadores autenticados podem:
 
-1. Abrir `http://localhost:8080/register`, criar um utilizador com role `DONOR` ou `BENEFICIARY` e confirmar que volta para `/login` com mensagem de sucesso.
-2. Entrar em `http://localhost:8080/login` com `admin@ecodoar.pt` / `admin123`, `donor@ecodoar.pt` / `donor123` ou com a conta criada.
-3. Abrir `http://localhost:8080/beneficiaries` sem login e confirmar que a lista aparece, mas o formulário mostra `Inicie sessão para criar beneficiários.`.
-4. Abrir `http://localhost:8080/validation` sem login e confirmar que o formulário de validação não aparece.
-5. Com sessão iniciada, voltar a `/beneficiaries` e criar um beneficiário com `id` novo.
-6. Voltar a `/validation`, validar esse `id` e confirmar a mensagem de sucesso.
-7. Consultar `/logs` para ver registo, login, criação, validação e logout registados.
+- Criar beneficiários
+- Validar beneficiários
+- Consultar perfil
+- Terminar sessão
 
-## Como correr os testes
+---
 
-Executar todos os testes JUnit e Cucumber configurados:
+# Como Executar os Testes
+
+Executar todos os testes:
 
 ```bash
 mvn clean test
 ```
 
-Executar especificamente a feature BDD do Lab 13:
+Executar apenas os cenários BDD:
 
 ```bash
 mvn -Dtest=RunLab13CucumberTest test
 ```
 
-## Estrutura principal do projeto
+---
 
-```text
-.
-├── data/
-│   ├── beneficiaries.json
-│   └── test-beneficiaries.json
-├── docs/
-│   ├── requirements_v1.md
-│   ├── acceptance_criteria.md
-│   ├── test_plan.md
-│   ├── unit_test_report.md
-│   ├── test_execution.md
-│   ├── bdd_report.md
-│   └── traceability_req_bdd.md
-├── src/
-│   ├── Beneficiary.java              # package ecodoar
-│   ├── BeneficiaryRepository.java
-│   ├── ValidationService.java
-│   ├── ValidationRecord.java
-│   ├── LogEntry.java
-│   ├── User.java
-│   ├── AuthenticationService.java
-│   ├── EcoDoarApplication.java       # Spring Boot
-│   ├── EcoDoarWebController.java
-│   ├── main/resources/
-│   │   ├── templates/
-│   │   │   ├── index.html
-│   │   │   ├── beneficiaries.html
-│   │   │   ├── validation.html
-│   │   │   ├── history.html
-│   │   │   ├── logs.html
-│   │   │   ├── tests.html
-│   │   │   ├── login.html
-│   │   │   ├── register.html
-│   │   │   └── profile.html
-│   │   └── static/css/style.css
-│   └── test/
-│       ├── java/
-│       └── resources/bdd/features/
-└── pom.xml
-```
+# Documentação
 
-## Organização técnica
+Toda a documentação do projeto encontra-se na pasta `docs/`.
 
-- `EcoDoarApplication` inicia a aplicação Spring Boot e expõe um `ValidationService` configurado para `data/beneficiaries.json`.
-- `EcoDoarWebController` concentra as rotas web, gere sessão HTTP para login/logout e delega regras de negócio para `ValidationService`, `AuthenticationService` e `BeneficiaryRepository`.
-- As páginas HTML ficam em `src/main/resources/templates` e usam Thymeleaf.
-- O design visual fica em `src/main/resources/static/css/style.css`.
-- As classes de domínio e serviço originais foram preservadas, com visibilidade pública e pacote `ecodoar` para permitir acesso seguro pelo Spring Boot/Thymeleaf e evitar o uso do pacote Java padrão.
-- `AuthenticationService` contém os utilizadores de demonstração, valida credenciais em memória e permite registar novos utilizadores durante a execução.
+## Requisitos e Análise
 
-## Rastreabilidade e qualidade
+- requirements_v1.md
+- acceptance_criteria.md
 
-O projeto mantém documentação e relatórios em `docs/`, incluindo requisitos, critérios de aceitação, plano de testes, relatórios de execução e rastreabilidade BDD. A feature `src/test/resources/bdd/features/lab13.feature` demonstra:
+## Testes
 
-- **Happy path** — validar beneficiário existente.
-- **Negative path** — rejeitar beneficiário com nome vazio.
-- **Alternative flow** — rejeitar id duplicado.
-- **Boundary behavior** — validar beneficiário com nome de um caractere.
+- test_plan.md
+- test_cases.md
+- test_execution.md
+- unit_test_report.md
 
-## Observações de demonstração
+## BDD e Rastreabilidade
 
-- Os beneficiários são persistidos em formato JSON Lines no ficheiro `data/beneficiaries.json`, mantendo o comportamento original do `BeneficiaryRepository`.
-- O histórico e os logs ficam em memória durante a execução atual da aplicação, conforme a lógica existente do `ValidationService`.
-- O campo `name` pode repetir entre beneficiários; apenas o `id` deve ser único.
+- bdd_report.md
+- traceability_req_bdd.md
+- traceability_master.md
 
+## Lab 14 — Quality & Testing Maintenance
 
-## Informação original do grupo
+- gap_analysis_lab14.md
+- test_retrocompatibility.md
+- test_grooming_report.md
 
-### Tema de projeto usado
+---
 
-EcoDoar.
+# Qualidade e Testes
 
-### Projeto no Trello
+## Testes Unitários
+
+- ValidationServiceTest
+- ValidationServiceSecurityTest
+- AuthenticationServiceTest
+
+## Testes de Integração / BDD
+
+- lab11.feature
+- lab13.feature
+- BeneficiaryLab13Steps
+- RunLab13CucumberTest
+
+### Cobertura BDD
+
+- Happy Path
+- Negative Path
+- Alternative Flow
+- Boundary Conditions
+
+---
+
+# Observações
+
+- Os beneficiários são armazenados em `data/beneficiaries.json`.
+- O identificador (`id`) é único.
+- O histórico e os logs são mantidos em memória durante a execução da aplicação.
+- O projeto foi desenvolvido com foco na validação institucional de beneficiários, autenticação de utilizadores e auditoria de operações.
+
+---
+
+# Projeto no Trello
 
 [Link para acessar o projeto do Trello](https://trello.com/invite/b/698af9b62d78be81e09be2bf/ATTI30844e510cf7421d1a9442488e11ef04F8B63AAE/exemplo)
 
-### Elementos do grupo
+---
 
-- a22043160 - João Gabriel
-- a22045793 - Vinicius Valconcellos Cardoso
-- a22207598 - Andre Marques
-- a22204542 - Giuseppe Mazzeo
+# Elementos do Grupo
+
+- a22043160 — João Gabriel
+- a22045793 — Vinicius Valconcellos Cardoso
+- a22207598 — Andre Marques
+- a22204542 — Giuseppe Mazzeo
