@@ -239,7 +239,7 @@ Toda a documentação do projeto encontra-se na pasta `docs/`.
 
 # Elementos do Grupo
 
-- a22043160 — João Gabriel
-- a22045793 — Vinicius Valconcellos Cardoso
-- a22207598 — Andre Marques
-- a22204542 — Giuseppe Mazzeo
+- a22403160 — João Gabriel
+- a22405793 — Vinícius Vasconcellos Cardoso
+- a22207598 — André Brandão Gira Marques
+- a22204542 — Giuseppe Nabais Durão Mazzeo
