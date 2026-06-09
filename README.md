@@ -239,7 +239,7 @@ Toda a documentação do projeto encontra-se na pasta `docs/`.
 
 # Elementos do Grupo
 
-- a22403160 — João Gabriel
+- a22403160 — João Gabriel Ribeiro Milito Sarlo da Silva
 - a22405793 — Vinícius Vasconcellos Cardoso
 - a22207598 — André Brandão Gira Marques
 - a22204542 — Giuseppe Nabais Durão Mazzeo
